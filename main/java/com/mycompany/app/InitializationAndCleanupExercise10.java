@@ -1,7 +1,7 @@
 public class InitializationAndCleanupExercise10 {
     
     public void finalize() {
-        System.out.println("Nguyen dep trai");
+        System.out.println("Toi Ngu Qua");
     }
     public static void main(String[] args) {
         InitializationAndCleanupExercise10 obj = new InitializationAndCleanupExercise10();
