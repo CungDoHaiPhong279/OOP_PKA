@@ -1,5 +1,5 @@
 // Giao diện Signal
-public interface Cau1 {
+public interface Signal {
     // Phương thức để lấy biên độ
     double getAmplitude();
     
@@ -17,7 +17,7 @@ public interface Cau1 {
     }
     
     // Lớp DiscreteSignal kế thừa giao diện Signal
-     class DiscreteSignal implements Cau1 {
+     class DiscreteSignal implements Signal {
     private final double amplitude;
     private final double period;
     private final double frequency;
@@ -62,7 +62,7 @@ public interface Cau1 {
     }
     
     // Lớp ContinuousSignal kế thừa giao diện Signal
-     class ContinuousSignal implements Cau1 {
+     class ContinuousSignal implements Signal {
     private final double amplitude;
     private final double period;
     private final double frequency;
@@ -117,3 +117,4 @@ public interface Cau1 {
     continuousSignal.displayInfo();
     }
     }
+
