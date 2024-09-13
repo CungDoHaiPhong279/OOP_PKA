@@ -1,3 +1,5 @@
+package baitapgiuaky_cungdohaiphong.FinalProject;
+
 public class Radar {
     public double X(int n) {
         if (n >= 0 && n <= 15) {

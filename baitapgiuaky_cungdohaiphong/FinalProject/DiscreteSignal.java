@@ -1,3 +1,5 @@
+package baitapgiuaky_cungdohaiphong.FinalProject;
+
 public class DiscreteSignal {
     public double x(int n, double[] xk) {
         double sum = 0;

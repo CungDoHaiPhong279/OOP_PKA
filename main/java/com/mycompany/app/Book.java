@@ -1,3 +1,4 @@
+package main.java.com.mycompany.app;
 public class Book {
     String title;
     String author;

@@ -1,3 +1,4 @@
+package main.java.com.mycompany.app;
 public class App {
     public static void main(String[] args) {
         // Tạo một đối tượng Book

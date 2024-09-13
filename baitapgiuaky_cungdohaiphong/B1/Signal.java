@@ -1,3 +1,4 @@
+package baitapgiuaky_cungdohaiphong.B1;
 // Giao diện Signal
 public interface Signal {
     // Phương thức để lấy biên độ
