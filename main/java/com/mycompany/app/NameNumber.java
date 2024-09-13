@@ -1,3 +1,5 @@
+package main.java.com.mycompany.app;
+
 public class NameNumber {
     private String lastName;
     private String telNumber;

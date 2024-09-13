@@ -1,3 +1,4 @@
+package main.java.com.mycompany.app;
 public class InitializationAndCleanupExercise2 {
     // Trường được khởi tạo tại định nghĩa
     String s1 = "Khoi tao tai dinh nghia";

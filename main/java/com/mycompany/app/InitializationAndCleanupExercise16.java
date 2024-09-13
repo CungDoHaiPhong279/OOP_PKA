@@ -1,3 +1,4 @@
+package main.java.com.mycompany.app;
 public class InitializationAndCleanupExercise16 {
     String[] arr = {"a", "b", "c", "d", "e"};
     public static void main(String[] args) {

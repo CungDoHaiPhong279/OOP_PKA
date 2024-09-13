@@ -1,3 +1,4 @@
+package main.java.com.mycompany.app;
 public class InitializationAndCleanupExercise3 {
     public InitializationAndCleanupExercise3() {
         System.out.println("Ham tao mac dinh duoc tao");

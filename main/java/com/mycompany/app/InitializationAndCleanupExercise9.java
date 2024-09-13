@@ -1,3 +1,4 @@
+package main.java.com.mycompany.app;
 public class InitializationAndCleanupExercise9 {
     //Hàm tạo 1
     public InitializationAndCleanupExercise9() {

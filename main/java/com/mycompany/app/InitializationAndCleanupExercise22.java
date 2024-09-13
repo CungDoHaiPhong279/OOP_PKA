@@ -1,3 +1,5 @@
+package main.java.com.mycompany.app;
+
 public class InitializationAndCleanupExercise22 {
     public enum Currency {
         VND, DOLLAR, NDT, RUBY, BANG_ANH

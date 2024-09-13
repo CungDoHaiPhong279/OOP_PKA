@@ -1,3 +1,4 @@
+package Week1.java;
 public class Assignment1 {
     public static void main(String[] args) {
     Number n1 = new Number(); //tao doi tuong Number moi gan bien cho n1

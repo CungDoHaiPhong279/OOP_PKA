@@ -1,3 +1,4 @@
+package main.java.com.mycompany.app;
 public class InitializationAndCleanupExercise12 {
     public static void main(String[] args) {
         Tank tank = new Tank();

@@ -1,3 +1,5 @@
+package main.java.com.mycompany.app;
+
 public class InitializationAndCleanupExercise18 {
     public InitializationAndCleanupExercise18(String type) {
         System.out.println("doi so duoc truyen vao la: " + type);

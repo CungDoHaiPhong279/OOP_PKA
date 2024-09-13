@@ -1,3 +1,4 @@
+package main.java.com.mycompany.app;
 public class InitializationAndCleanupExercise15 {
     // Trường String được khởi tạo thông qua khối khởi tạo instance
     String instanceField;

@@ -1,3 +1,4 @@
+package main.java.com.mycompany.app;
 public class InitializationAndCleanupExercise14 {
     static String s1 = "Duoc khoi tao khi dinh nghiz";
 

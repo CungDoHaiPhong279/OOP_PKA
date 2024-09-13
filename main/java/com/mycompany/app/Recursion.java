@@ -1,3 +1,5 @@
+package main.java.com.mycompany.app;
+
 public class Recursion {
     long factorial( long number) {
         if (number <= 1) // base case

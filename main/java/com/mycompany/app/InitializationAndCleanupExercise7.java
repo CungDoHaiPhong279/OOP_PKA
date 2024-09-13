@@ -1,3 +1,4 @@
+package main.java.com.mycompany.app;
 public class InitializationAndCleanupExercise7 {
     public static void main(String[] args) {
         WithoutAConstructor test = new WithoutAConstructor();
