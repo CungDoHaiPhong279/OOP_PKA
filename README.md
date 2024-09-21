@@ -1,25 +1,25 @@
-GROUP_10-OOP-N03 
+GROUP_5-OOP-N03 
 # Hệ Thống Quản Lý Bán Hàng
 
 ## Giới Thiệu Dự Án
-Dự án này là một hệ thống quản lý bệnh viện, giúp tối ưu hóa và cải thiện hiệu quả hoạt động của các bệnh viện. Hệ thống cho phép quản lý hồ sơ bệnh nhân.
+Dự án này là một hệ thống quản lý bán hàng, giúp tối ưu hóa và cải thiện hiệu quả hoạt động của các cửa hàng. Hệ thống cho phép quản lý sản phẩm cũng như đơn hàng.
 ## Thành Viên Nhóm
-- **Hoàng Lê Đức Huy**: Phát triển phần mềm toàn diện.
+- **Cung Đỗ Hải Phong**: Phát triển phần mềm toàn diện.
 
 
 ## Chức Năng Chính
-- Thêm, sửa, xoá bệnh nhân
-- Thêm, sửa, xoá phòng điều trị
-- Lấy thông tin bệnh nhân
-- Lấy thông tin phòng điều trị
-- Thêm bệnh nhân vào phòng điều trị(Nhập viện)
-- Xoá bệnh nhân khỏi phòng điều trị(Ra viện)
+- Thêm, sửa, xoá sản phẩm
+- Thêm, sửa, xoá đơn hàng
+- Lấy thông tin sản phẩm
+- Lấy thông tin đơn hàng
+- Thêm sản phẩm vào đơn hàng(Order)
+- Xoá sản phẩm khỏi đơn hàng
 
 ## UML Dự Án
 
 ## 1.1 UML Component Diagram
 
-![UML](./img/UML.png)
+![UML]("C:\Users\cungt\OneDrive\Hình ảnh\Ảnh chụp màn hình\UML.png")
 
 ## 1.2 UML Sequence Diagram
 
