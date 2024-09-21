@@ -19,7 +19,8 @@ Dự án này là một hệ thống quản lý bán hàng, giúp tối ưu hóa
 
 ## 1.1 UML Component Diagram
 
-![UML]("C:\Users\cungt\OneDrive\Hình ảnh\Ảnh chụp màn hình\UML.png")
+[UML.pdf](https://github.com/user-attachments/files/17083590/UML.pdf)
+
 
 ## 1.2 UML Sequence Diagram
 
