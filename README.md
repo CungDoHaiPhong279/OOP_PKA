@@ -19,7 +19,8 @@ Dự án này là một hệ thống quản lý bán hàng, giúp tối ưu hóa
 
 ## 1.1 UML Component Diagram
 
-[UML.pdf](https://github.com/user-attachments/files/17083590/UML.pdf)
+[UML](https://github.com/user-attachments/assets/843e63f4-dba8-4f92-8759-acb107074fd5)
+
 
 
 ## 1.2 UML Sequence Diagram
