@@ -25,9 +25,9 @@ Dự án này là một hệ thống quản lý bán hàng, giúp tối ưu hóa
 
 ## 1.2 UML Sequence Diagram
 
-## 1.2.1 
+## 1.2.1 (database.sql)
 
-![UML](./img/sequence1.jpg)
+![UML]("C:\Users\cungt\OneDrive\Hình ảnh\Ảnh chụp màn hình\Quanlybanhang_mysql.png")
 
 ## 1.2.2
 
