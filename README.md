@@ -27,7 +27,8 @@ Dự án này là một hệ thống quản lý bán hàng, giúp tối ưu hóa
 
 ## 1.2.1 (database.sql)
 
-![UML](""C:\Users\cungt\Downloads\Quanlybanhang_mysql.jpg"")
+![UML]("![Quanlybanhang_mysql](https://github.com/user-attachments/assets/0c504e4c-3abd-40e6-9577-1f18fbb60878)
+")
 
 ## 1.2.2
 
