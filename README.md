@@ -31,11 +31,13 @@ Dự án này là một hệ thống quản lý bán hàng, giúp tối ưu hóa
 
 ## 1.2.2
 
-![UML]("C:\Users\cungt\Downloads\Register_Login.jpg")
+![UML](https://github.com/user-attachments/assets/05a05666-cddf-42d8-bf3e-eb2636dc7e0b)
+
 
 ## 1.2.3
 
-![UML](./img/sequence3.jpg)
+![UML](https://github.com/user-attachments/assets/20241541-ea81-4919-a7b1-d7c37284787f)
+
 
 ## 1.2.4
 
