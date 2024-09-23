@@ -41,7 +41,7 @@ Dự án này là một hệ thống quản lý bán hàng, giúp tối ưu hóa
 
 ## 1.2.4
 
-![UML](./img/sequence4.jpg)
+![UML](https://github.com/user-attachments/assets/b24750c3-909a-491e-8fe5-2d6de6af9bbb)
 
 
    
