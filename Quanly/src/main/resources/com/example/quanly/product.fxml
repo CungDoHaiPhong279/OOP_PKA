@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<!-- Liên kết với ProductController -->
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.quanly.ProductController"
+      spacing="10">
+
+    <!-- Thêm Padding đúng định dạng -->
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+
+    <!-- Tiêu đề -->
+    <Label text="Quản Lý Sản Phẩm" style="-fx-font-size: 20px;"/>
+
+    <!-- TableView để hiển thị sản phẩm -->
+    <TableView fx:id="productTable">
+        <columns>
+            <TableColumn text="Mã SP" fx:id="columnProductId"/>
+            <TableColumn text="Tên SP" fx:id="columnProductName"/>
+            <TableColumn text="Mô Tả" fx:id="columnDescription"/>
+            <TableColumn text="Giá" fx:id="columnPrice"/>
+            <TableColumn text="Số Lượng Tồn" fx:id="columnStockQuantity"/>
+            <TableColumn text="Nhà cung cấp" fx:id="columnSupplierId"/> <!-- Thêm cột này -->
+            <TableColumn text="Ngày tạo" fx:id="columnCreatedAt"/>      <!-- Thêm cột này -->
+        </columns>
+    </TableView>
+
+    <!-- Các nút chức năng CRUD -->
+    <HBox spacing="10">
+        <Button text="Thêm" onAction="#handleAddProduct"/>
+        <Button text="Sửa" onAction="#handleEditProduct"/>
+        <Button text="Xóa" onAction="#handleDeleteProduct"/>
+    </HBox>
+
+    <!-- Nút điều hướng -->
+    <HBox spacing="10">
+        <Button text="Quay lại" onAction="#handleBack"/>
+        <Button text="Chuyển sang Đơn hàng" onAction="#handleGoToOrders"/>
+    </HBox>
+</VBox>

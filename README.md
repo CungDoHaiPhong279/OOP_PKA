@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 GROUP_5-OOP-N03 
 # Hệ Thống Quản Lý Bán Hàng
 
@@ -46,3 +47,6 @@ Dự án này là một hệ thống quản lý bán hàng, giúp tối ưu hóa
 
 ## Giao diện đầu tiên của dự án
 ![firstScreen](https://github.com/user-attachments/assets/3e754c8e-de54-444d-b075-b48958978aee)
+=======
+
+>>>>>>> Stashed changes
