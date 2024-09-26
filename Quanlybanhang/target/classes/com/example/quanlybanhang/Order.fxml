@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="10" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanlybanhang.OrderController">
+    <children>
+        <!-- Bảng hiển thị danh sách đơn hàng -->
+        <TableView fx:id="orderTable" prefHeight="200" prefWidth="600">
+            <columns>
+                <TableColumn fx:id="orderIdColumn" prefWidth="150" text="Order ID" />
+                <TableColumn fx:id="customerNameColumn" prefWidth="200" text="Customer Name" />
+                <TableColumn fx:id="productsColumn" prefWidth="250" text="Products" />
+            </columns>
+        </TableView>
+
+        <!-- Các trường nhập liệu cho Order -->
+        <HBox spacing="10">
+            <children>
+                <Label text="Order ID:" />
+                <TextField fx:id="orderIdInput" promptText="Enter Order ID" />
+            </children>
+        </HBox>
+
+        <HBox spacing="10">
+            <children>
+                <Label text="Customer Name:" />
+                <TextField fx:id="customerNameInput" promptText="Enter Customer Name" />
+            </children>
+        </HBox>
+
+        <HBox spacing="10">
+            <children>
+                <Label text="Products:" />
+                <TextField fx:id="productsInput" promptText="Enter Products (comma separated)" />
+            </children>
+        </HBox>
+
+        <!-- Nút Thêm, Sửa, Xóa -->
+        <HBox alignment="center" spacing="10">
+            <children>
+            <Button mnemonicParsing="false" onAction="#addOrder" text="Trở Lại" />
+                <Button onAction="#addOrder" text="Thêm đơn hàng" />
+                <Button onAction="#editOrder" text="Sửa đơn hàng" />
+                <Button onAction="#deleteOrder" text="Xóa đơn hàng" />
+            </children>
+        </HBox>
+    </children>
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+</VBox>
