@@ -44,4 +44,5 @@ Dự án này là một hệ thống quản lý bán hàng, giúp tối ưu hóa
 ![UML](https://github.com/user-attachments/assets/b24750c3-909a-491e-8fe5-2d6de6af9bbb)
 
 
-   
+## Giao diện đầu tiên của dự án
+![firstScreen](https://github.com/user-attachments/assets/3e754c8e-de54-444d-b075-b48958978aee)
