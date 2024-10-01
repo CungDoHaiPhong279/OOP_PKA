@@ -1,14 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.quanly.OrderController"
-            prefHeight="400.0" prefWidth="600.0">
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<GridPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.quanly.OrderController" hgap="10" vgap="10">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
 
-</AnchorPane>
+    <!-- Bảng quản lý đơn hàng -->
+    <VBox spacing="10" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="2">
+        <Label text="Danh sách đơn hàng"/>
+        <TableView fx:id="orderTable" prefHeight="200">
+            <columns>
+                <TableColumn fx:id="orderIdColumn" text="Order ID" prefWidth="100"/>
+                <TableColumn fx:id="userIdColumn" text="Customer Name" prefWidth="150"/>
+                <TableColumn fx:id="orderDateColumn" text="Order Date" prefWidth="150"/>
+                <TableColumn fx:id="statusColumn" text="Status" prefWidth="100"/>
+                <TableColumn fx:id="totalColumn" text="Total" prefWidth="100"/>
+            </columns>
+        </TableView>
+    </VBox>
+
+    <!-- Thông tin khách hàng và đơn hàng -->
+    <VBox spacing="10" GridPane.rowIndex="1" GridPane.columnIndex="0">
+        <Label text="Thông tin khách hàng và đơn hàng"/>
+        <GridPane hgap="10" vgap="10">
+            <Label text="Khách hàng:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="customerNameField" promptText="Nhập tên khách hàng" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+            <Label text="Ngày đặt hàng:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <DatePicker fx:id="orderDatePicker" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+            <Label text="Trạng thái:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="statusComboBox" GridPane.rowIndex="2" GridPane.columnIndex="1">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Pending"/>
+                        <String fx:value="Shipped"/>
+                        <String fx:value="Delivered"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+        </GridPane>
+    </VBox>
+
+    <!-- Quản lý sản phẩm trong đơn hàng -->
+    <VBox spacing="10" GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="2">
+        <Label text="Sản phẩm trong đơn hàng"/>
+        <TableView fx:id="orderItemsTable" prefHeight="150">
+            <columns>
+                <TableColumn fx:id="productNameColumn" text="Product Name" prefWidth="150"/>
+                <TableColumn fx:id="quantityColumn" text="Quantity" prefWidth="100"/>
+                <TableColumn fx:id="priceColumn" text="Price" prefWidth="100"/>
+            </columns>
+        </TableView>
+
+        <!-- Chọn sản phẩm và thêm vào đơn hàng -->
+        <GridPane hgap="10" vgap="10">
+            <Label text="Sản phẩm:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="productComboBox" promptText="Chọn sản phẩm" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+            <Label text="Số lượng:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="quantityField" promptText="Nhập số lượng" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+            <Button text="Thêm sản phẩm" onAction="#handleAddOrderItem" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        </GridPane>
+    </VBox>
+
+    <!-- Nút thao tác thêm, chỉnh sửa, xóa đơn hàng -->
+    <HBox spacing="10" alignment="center" GridPane.rowIndex="3" GridPane.columnIndex="0" GridPane.columnSpan="2">
+        <Button text="Thêm đơn hàng" onAction="#handleAddOrder"/>
+        <Button text="Chỉnh sửa đơn hàng" onAction="#handleEditOrder"/>
+        <Button text="Xóa đơn hàng" onAction="#handleDeleteOrder"/>
+    </HBox>
+
+</GridPane>

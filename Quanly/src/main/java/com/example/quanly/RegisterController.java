@@ -28,26 +28,39 @@ public class RegisterController {
     // Xử lý hành động đăng ký
     @FXML
     private void handleRegister() {
-        String name = nameField.getText();
-        String email = emailField.getText();
-        String phone = phoneNumberField.getText();
-        String password = passwordField.getText();
+        String name = nameField.getText().trim();
+        String email = emailField.getText().trim();
+        String phone = phoneNumberField.getText().trim();
+        String password = passwordField.getText().trim();
+
+        // Kiểm tra xem các trường thông tin có bị để trống không
+        if (name.isEmpty() || email.isEmpty() || phone.isEmpty() || password.isEmpty()) {
+            showAlert("Lỗi", "Vui lòng nhập đầy đủ thông tin.");
+            return;
+        }
+
+        // Kiểm tra định dạng email
+        if (!isValidEmail(email)) {
+            showAlert("Lỗi", "Vui lòng nhập địa chỉ email hợp lệ.");
+            return;
+        }
+
+        // Kiểm tra định dạng số điện thoại (chỉ chứa các chữ số)
+        if (!isValidPhoneNumber(phone)) {
+            showAlert("Lỗi", "Số điện thoại phải là số hợp lệ.");
+            return;
+        }
 
         // Kiểm tra xem email có tồn tại hay không
         if (isEmailExist(email)) {
-            System.out.println("Email đã tồn tại!");
             showAlert("Lỗi", "Email đã tồn tại. Vui lòng sử dụng email khác.");
         } else {
             // Lưu người dùng vào cơ sở dữ liệu nếu email chưa tồn tại
             if (registerUser(name, email, phone, password)) {
-                System.out.println("User registered successfully!");
                 showAlert("Thành công", "Đăng ký thành công!");
-
-                // Đóng cửa sổ đăng ký và quay lại trang đăng nhập
                 Stage stage = (Stage) nameField.getScene().getWindow();
                 stage.close();
             } else {
-                System.out.println("Registration failed!");
                 showAlert("Lỗi", "Đăng ký thất bại. Vui lòng thử lại.");
             }
         }
@@ -95,6 +108,18 @@ public class RegisterController {
         }
 
         return false;
+    }
+
+    // Phương thức kiểm tra định dạng email
+    private boolean isValidEmail(String email) {
+        String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+        return email.matches(emailRegex);
+    }
+
+    // Phương thức kiểm tra định dạng số điện thoại
+    private boolean isValidPhoneNumber(String phone) {
+        String phoneRegex = "\\d+";
+        return phone.matches(phoneRegex);
     }
 
     // Phương thức hiển thị cảnh báo

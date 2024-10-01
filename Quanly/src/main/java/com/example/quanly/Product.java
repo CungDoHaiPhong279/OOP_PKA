@@ -24,6 +24,13 @@ public class Product {
         this.createdAt = new SimpleStringProperty(createdAt);
     }
 
+    // Constructor ngắn với productId, productName, và price
+    public Product(int productId, String productName, double price) {
+        this.productId = new SimpleIntegerProperty(productId);
+        this.productName = new SimpleStringProperty(productName);
+        this.price = new SimpleDoubleProperty(price);
+    }
+
     // Constructor mặc định (không tham số)
     public Product() {
         this(0, "", "", 0.0, 0, 0, "");
@@ -119,5 +126,4 @@ public class Product {
     public StringProperty createdAtProperty() {
         return createdAt;
     }
-
 }

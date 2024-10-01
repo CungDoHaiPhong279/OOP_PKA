@@ -40,3 +40,4 @@
     <!-- Nút Đăng ký -->
     <Button text="Register" GridPane.columnIndex="1" GridPane.rowIndex="5" onAction="#handleRegister"/>
 </GridPane>
+
