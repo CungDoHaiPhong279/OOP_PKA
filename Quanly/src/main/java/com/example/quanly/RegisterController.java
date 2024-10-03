@@ -6,6 +6,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -58,6 +61,11 @@ public class RegisterController {
             // Lưu người dùng vào cơ sở dữ liệu nếu email chưa tồn tại
             if (registerUser(name, email, phone, password)) {
                 showAlert("Thành công", "Đăng ký thành công!");
+
+                // Lưu dữ liệu vào file txt
+                saveUserDataToFile(name, email, phone, password);
+
+                // Đóng cửa sổ đăng ký và quay lại trang đăng nhập
                 Stage stage = (Stage) nameField.getScene().getWindow();
                 stage.close();
             } else {
@@ -129,5 +137,24 @@ public class RegisterController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    // Lưu dữ liệu người dùng vào file txt
+    private void saveUserDataToFile(String name, String email, String phone, String password) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("user_data.txt", true))) {
+            writer.write("Name: " + name);
+            writer.newLine();
+            writer.write("Email: " + email);
+            writer.newLine();
+            writer.write("Phone: " + phone);
+            writer.newLine();
+            writer.write("Password: " + password); // Không nên lưu mật khẩu thô, chỉ là ví dụ
+            writer.newLine();
+            writer.write("-------------------------");
+            writer.newLine();
+        } catch (IOException e) {
+            showAlert("Lỗi", "Không thể lưu dữ liệu vào file. Vui lòng thử lại.");
+            e.printStackTrace();
+        }
     }
 }

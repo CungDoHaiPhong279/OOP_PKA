@@ -5,30 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1d603b8-090b-4744-9440-20e34b12d1e2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/quanly/Order.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/quanly/OrderItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector_j_9_0_0.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/quanly/user_data.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/quanly/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/quanly/DBConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/quanly/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/quanly/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/quanly/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/quanly/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/quanly/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/quanly/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/quanly/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/quanly/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/quanly/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/quanly/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/quanly/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/quanly/ProductDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/quanly/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/quanly/RegisterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/quanly/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/quanly/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/quanly/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/quanly/login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/quanly/order.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/quanly/order.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/quanly/product.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/quanly/product.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/quanly/register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/quanly/register.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/quanly/OrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/quanly/OrderController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/quanly/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/quanly/Product.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/quanly/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/quanly/login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/quanly/order.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/quanly/order.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/quanly/product.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/quanly/product.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/quanly/register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/quanly/register.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/quanly/RegisterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/quanly/RegisterController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +94,9 @@
       <workItem from="1727369097168" duration="419000" />
       <workItem from="1727369541565" duration="399000" />
       <workItem from="1727370119842" duration="19550000" />
-      <workItem from="1727757083530" duration="1647000" />
+      <workItem from="1727757083530" duration="1978000" />
+      <workItem from="1727947272209" duration="369000" />
+      <workItem from="1727950122415" duration="1954000" />
     </task>
     <servers />
   </component>
