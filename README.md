@@ -21,7 +21,7 @@ Dự án này là một hệ thống quản lý bán hàng, giúp tối ưu hóa
 
 ## 1.1 UML Component Diagram
 
-![UML](quản lý bán hàng.drawio.jpg)
+![UML](<quản lý bán hàng.drawio.jpg>)
 
 
 
@@ -33,12 +33,12 @@ Dự án này là một hệ thống quản lý bán hàng, giúp tối ưu hóa
 
 ## 1.2.2
 
-![UML](Quản Lý Sản Phẩm (1).jpg)
+![UML](<Quản Lý Sản Phẩm (1).jpg>)
 
 
 ## 1.2.3
 
-![UML](Quản lí đơn hàng.jpg)
+![UML](<Quản lí đơn hàng.jpg>)
 
 
 ## 1.2.4
@@ -47,7 +47,7 @@ Dự án này là một hệ thống quản lý bán hàng, giúp tối ưu hóa
 
 
 ## Giao diện đầu tiên của dự án
-![firstScreen](Ảnh chụp màn hình 2024-10-03 172127.jpg)
+![firstScreen](<Ảnh chụp màn hình 2024-10-03 172127.jpg>)
 =======
 
 >>>>>>> Stashed changes
