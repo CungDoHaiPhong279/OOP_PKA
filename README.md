@@ -1,10 +1,11 @@
-<<<<<<< Updated upstream
+<<<<<<< Updated upstream >>>>>>>
 GROUP_5-OOP-N03 
 # Hệ Thống Quản Lý Bán Hàng
 
 ## Giới Thiệu Dự Án
 Dự án này là một hệ thống quản lý bán hàng, giúp tối ưu hóa và cải thiện hiệu quả hoạt động của các cửa hàng. Hệ thống cho phép quản lý sản phẩm cũng như đơn hàng.
 ## Thành Viên Nhóm
+
 - **Cung Đỗ Hải Phong**: Phát triển phần mềm toàn diện.
 
 
@@ -20,33 +21,33 @@ Dự án này là một hệ thống quản lý bán hàng, giúp tối ưu hóa
 
 ## 1.1 UML Component Diagram
 
-![UML](https://github.com/user-attachments/assets/843e63f4-dba8-4f92-8759-acb107074fd5)
+![UML](quản lý bán hàng.drawio.jpg)
 
 
 
 ## 1.2 UML Sequence Diagram
 
-## 1.2.1 (database.sql)
+## 1.2.1 
 
-![UML](https://github.com/user-attachments/assets/0c504e4c-3abd-40e6-9577-1f18fbb60878)
+![UML](Register-Login.jpg)
 
 ## 1.2.2
 
-![UML](https://github.com/user-attachments/assets/05a05666-cddf-42d8-bf3e-eb2636dc7e0b)
+![UML](Quản Lý Sản Phẩm (1).jpg)
 
 
 ## 1.2.3
 
-![UML](https://github.com/user-attachments/assets/20241541-ea81-4919-a7b1-d7c37284787f)
+![UML](Quản lí đơn hàng.jpg)
 
 
 ## 1.2.4
 
-![UML](https://github.com/user-attachments/assets/b24750c3-909a-491e-8fe5-2d6de6af9bbb)
+![UML]()
 
 
 ## Giao diện đầu tiên của dự án
-![firstScreen](https://github.com/user-attachments/assets/3e754c8e-de54-444d-b075-b48958978aee)
+![firstScreen](Ảnh chụp màn hình 2024-10-03 172127.jpg)
 =======
 
 >>>>>>> Stashed changes
