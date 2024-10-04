@@ -22,7 +22,8 @@ Dự án này là một hệ thống quản lý bán hàng, giúp tối ưu hóa
 
 ## 1.1 UML Component Diagram
 
-![UML](<quản lý bán hàng.drawio.jpg>)
+![UML](https://github.com/user-attachments/assets/88891abd-e786-480c-bfe4-42454275eab4)
+
 
 
 
@@ -30,16 +31,19 @@ Dự án này là một hệ thống quản lý bán hàng, giúp tối ưu hóa
 
 ## 1.2.1 
 
-![UML](Register-Login.jpg)
+![UML](https://github.com/user-attachments/assets/b05cdac7-2579-41d3-bb83-ba3e8bc8c5a6)
+
 
 ## 1.2.2
 
-![UML](<Quản Lý Sản Phẩm (1).jpg>)
+![UML](https://github.com/user-attachments/assets/5b2d0b21-7023-4088-957f-94799531fa96)
+
 
 
 ## 1.2.3
 
-![UML](<Quản lí đơn hàng.jpg>)
+![UML](https://github.com/user-attachments/assets/8a55da5e-e857-4096-8955-e15b635c6c89)
+
 
 
 ## 1.2.4
@@ -48,7 +52,8 @@ Dự án này là một hệ thống quản lý bán hàng, giúp tối ưu hóa
 
 
 ## Giao diện đầu tiên của dự án
-![firstScreen](<Ảnh chụp màn hình 2024-10-03 172127.jpg>)
+![firstScreen](https://github.com/user-attachments/assets/dc32f8a7-d815-42f6-a02b-2286f935396a)
+
 =======
 
 >>>>>>> Stashed changes
