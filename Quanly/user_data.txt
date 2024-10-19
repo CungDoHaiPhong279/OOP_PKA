@@ -38,3 +38,18 @@ Email: 1@gmail.com
 Phone: 0867467508
 Password: 1
 -------------------------
+Name: admin
+Email: 2@gmail.com
+Phone: 1
+Password: 1
+-------------------------
+Name: Vinh
+Email: admin@gmail.com
+Phone: 1234567890
+Password: 123456
+-------------------------
+Name: qq
+Email: a@gmail.com
+Phone: 1234567890
+Password: 123456
+-------------------------

@@ -42,15 +42,27 @@ public class RegisterController {
             return;
         }
 
-        // Kiểm tra định dạng email
-        if (!isValidEmail(email)) {
-            showAlert("Lỗi", "Vui lòng nhập địa chỉ email hợp lệ.");
+        // Kiểm tra mật khẩu phải có ít nhất 6 kí tự
+        if (password.length() < 6) {
+            showAlert("Lỗi", "Mật khẩu phải có ít nhất 6 kí tự.");
             return;
         }
 
-        // Kiểm tra định dạng số điện thoại (chỉ chứa các chữ số)
+        // Kiểm tra số điện thoại phải có đủ 10 số
         if (!isValidPhoneNumber(phone)) {
-            showAlert("Lỗi", "Số điện thoại phải là số hợp lệ.");
+            showAlert("Lỗi", "Số điện thoại phải là số hợp lệ và có đủ 10 số.");
+            return;
+        }
+
+        // Kiểm tra xem tên người dùng đã tồn tại hay chưa
+        if (isUsernameExist(name)) {
+            showAlert("Lỗi", "Tên người dùng đã tồn tại. Vui lòng chọn tên khác.");
+            return;
+        }
+
+        // Kiểm tra định dạng email
+        if (!isValidEmail(email)) {
+            showAlert("Lỗi", "Vui lòng nhập địa chỉ email hợp lệ.");
             return;
         }
 
@@ -72,6 +84,27 @@ public class RegisterController {
                 showAlert("Lỗi", "Đăng ký thất bại. Vui lòng thử lại.");
             }
         }
+    }
+
+    // Phương thức kiểm tra xem tên người dùng đã tồn tại trong cơ sở dữ liệu hay không
+    private boolean isUsernameExist(String name) {
+        Connection connection = DBConnection.getConnection();
+        String query = "SELECT COUNT(*) FROM users WHERE name = ?";
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, name);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                return resultSet.getInt(1) > 0; // Nếu COUNT > 0 thì tên người dùng đã tồn tại
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
     }
 
     // Phương thức kiểm tra xem email có tồn tại trong cơ sở dữ liệu hay không
@@ -126,7 +159,7 @@ public class RegisterController {
 
     // Phương thức kiểm tra định dạng số điện thoại
     private boolean isValidPhoneNumber(String phone) {
-        String phoneRegex = "\\d+";
+        String phoneRegex = "\\d{10}"; // Số điện thoại phải có đúng 10 chữ số
         return phone.matches(phoneRegex);
     }
 
