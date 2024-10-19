@@ -296,7 +296,21 @@ public class ProductController {
         if (selectedProduct != null) {
             try {
                 // Kết nối tới cơ sở dữ liệu
-                Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Quanlybanhang", "root", "123456");
+                Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/quanlybanhang", "root", "123456");
+
+                // Kiểm tra xem sản phẩm có trong bất kỳ đơn hàng nào không
+                String checkOrderItemQuery = "SELECT COUNT(*) FROM order_items WHERE product_id = ?";
+                PreparedStatement checkStatement = connection.prepareStatement(checkOrderItemQuery);
+                checkStatement.setInt(1, selectedProduct.getProductId());
+                ResultSet resultSet = checkStatement.executeQuery();
+                resultSet.next();
+                int count = resultSet.getInt(1);
+
+                if (count > 0) {
+                    // Nếu sản phẩm đang có trong đơn hàng, hiển thị thông báo lỗi
+                    showAlert("Lỗi", "Sản phẩm đang có trong đơn hàng và không thể xóa.");
+                    return;
+                }
 
                 // Xóa sản phẩm đã chọn
                 String deleteQuery = "DELETE FROM products WHERE product_id = ?";
@@ -307,13 +321,14 @@ public class ProductController {
                 if (rowsAffected > 0) {
                     productList.remove(selectedProduct); // Xóa sản phẩm khỏi danh sách hiển thị
 
-                    // Cập nhật lại product_id cho tất cả các sản phẩm để đảm bảo ID liên tục
+                    // Cập nhật lại product_id cho tất cả các sản phẩm để đảm bảo ID liên tục (nếu cần)
                     reorderProductIds(connection);
 
                     // Reset AUTO_INCREMENT dựa trên giá trị lớn nhất mới
                     int maxProductId = getMaxProductId(connection);
                     resetAutoIncrement(connection, maxProductId + 1);
                 }
+
                 refreshTable();
             } catch (SQLException e) {
                 e.printStackTrace();

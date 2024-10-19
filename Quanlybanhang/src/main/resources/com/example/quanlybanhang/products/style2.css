@@ -1,0 +1,70 @@
+/* Header */
+.header-box {
+    -fx-background-color: #28a745;
+    -fx-padding: 10;
+    -fx-spacing: 20;
+}
+
+.header-label {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.header-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.icon-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-shape: 'M 0 0 L 10 0 L 10 10 L 0 10 Z';
+}
+
+/* Info Section */
+.info-label {
+    -fx-background-color: #f8f9fa;
+    -fx-padding: 15;
+    -fx-text-fill: black;
+    -fx-border-color: #28a745;
+    -fx-border-width: 2;
+    -fx-font-size: 13px;
+}
+
+/* Filter Section */
+.primary-button {
+    -fx-background-color: #28a745;
+    -fx-text-fill: white;
+    -fx-padding: 5 20;
+    -fx-font-size: 14px;
+}
+
+.text-field {
+    -fx-pref-width: 300px;
+}
+
+/* Table Section */
+.product-table {
+    -fx-padding: 10;
+    -fx-border-color: #dddddd;
+    -fx-background-color: white;
+    -fx-border-radius: 5;
+}
+
+.product-table .column-header {
+    -fx-background-color: #f8f9fa;
+    -fx-font-size: 12px;
+    -fx-text-fill: #333;
+}
+
+.product-table .table-cell {
+    -fx-padding: 10;
+}
+
+/* Footer */
+.footer-label {
+    -fx-text-fill: #6c757d;
+    -fx-font-size: 12px;
+    -fx-padding: 10;
+}

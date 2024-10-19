@@ -7,6 +7,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class OrderController {
 
@@ -31,15 +34,29 @@ public class OrderController {
     private TableColumn<OrderItem, Integer> quantityColumn;
     @FXML
     private TableColumn<OrderItem, Double> priceColumn;
+    @FXML
+    private TextField customerNameField; // Khai báo cho ô nhập tên khách hàng
+
+    @FXML
+    private DatePicker orderDatePicker;  // Khai báo cho DatePicker để chọn ngày
+
+    @FXML
+    private ComboBox<String> statusComboBox;
+
+    @FXML
+    private ComboBox<Product> productComboBox; // ComboBox để chọn sản phẩm
+    @FXML
+    private TextField quantityField; // TextField để nhập số lượng sản phẩm
 
     private ObservableList<Order> orderList = FXCollections.observableArrayList();
     private ObservableList<OrderItem> orderItemList = FXCollections.observableArrayList();
+    private ObservableList<Product> productList = FXCollections.observableArrayList();
     private Connection connection;
 
     public void initialize() {
         // Gán các cột của bảng đơn hàng
         orderIdColumn.setCellValueFactory(cellData -> cellData.getValue().orderIdProperty().asObject());
-        userIdColumn.setCellValueFactory(cellData -> cellData.getValue().userIdProperty());
+        userIdColumn.setCellValueFactory(cellData -> cellData.getValue().customerNameProperty());
         orderDateColumn.setCellValueFactory(cellData -> cellData.getValue().orderDateProperty());
         statusColumn.setCellValueFactory(cellData -> cellData.getValue().statusProperty());
         totalColumn.setCellValueFactory(cellData -> cellData.getValue().totalProperty().asObject());
@@ -50,22 +67,42 @@ public class OrderController {
         priceColumn.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
 
         loadOrdersFromDatabase();
-    }
+        loadProductsToComboBox(); // Tải danh sách sản phẩm vào ComboBox
+        // Lắng nghe sự kiện khi người dùng chọn một đơn hàng
+        orderTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                showOrderDetails(newValue);
+            }
+        });
 
+    }
+    // Hiển thị chi tiết đơn hàng khi người dùng chọn một đơn hàng
+    private void showOrderDetails(Order order) {
+        customerNameField.setText(order.getCustomerName());
+        orderDatePicker.setValue(LocalDateTime.parse(order.getOrderDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).toLocalDate());
+        statusComboBox.setValue(order.getStatus());
+
+        // Tải các sản phẩm trong đơn hàng
+        loadOrderItems(order.getOrderId());
+    }
     // Tải danh sách đơn hàng từ cơ sở dữ liệu
     private void loadOrdersFromDatabase() {
+        orderList.clear(); // Xóa danh sách hiện tại trước khi tải lại
+
         try {
             connection = DBConnection.getConnection();
-            String query = "SELECT o.order_id, u.name AS user_name, o.order_date, o.status, o.total, o.shipping_address " +
-                    "FROM orders o " +
-                    "JOIN users u ON o.user_id = u.user_id";
+            // Truy vấn để lấy thông tin đơn hàng từ bảng orders
+            String query = "SELECT order_id, customer_name, order_date, status, total, shipping_address FROM orders";
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
+                // Lấy trực tiếp customer_name từ bảng orders
+                String customerName = resultSet.getString("customer_name");
+
                 Order order = new Order(
                         resultSet.getInt("order_id"),
-                        resultSet.getString("user_name"),
+                        customerName, // Sử dụng customer_name từ kết quả truy vấn
                         resultSet.getString("order_date"),
                         resultSet.getString("status"),
                         resultSet.getDouble("total"),
@@ -73,171 +110,352 @@ public class OrderController {
                 );
                 orderList.add(order);
             }
+
+            // Gán danh sách đơn hàng cho bảng
             orderTable.setItems(orderList);
+
         } catch (SQLException e) {
             showAlert("Lỗi Cơ Sở Dữ Liệu", "Không thể tải danh sách đơn hàng từ cơ sở dữ liệu.");
             e.printStackTrace();
         }
     }
 
+
     // Tải danh sách sản phẩm trong đơn hàng từ cơ sở dữ liệu
     private void loadOrderItems(int orderId) {
+        orderItemList.clear(); // Đảm bảo xóa danh sách cũ trước khi tải mới
+
         try {
-            orderItemList.clear();
-            String query = "SELECT * FROM order_items WHERE order_id = ?";
+            System.out.println("Loading order items for order ID: " + orderId); // Kiểm tra orderId
+            // Cập nhật truy vấn để lấy product_name từ bảng products
+            String query = "SELECT oi.order_item_id, oi.order_id, oi.product_id, oi.quantity, oi.price, p.product_name " +
+                    "FROM order_items oi " +
+                    "JOIN products p ON oi.product_id = p.product_id " +
+                    "WHERE oi.order_id = ?";
+            System.out.println("Query: " + query); // Kiểm tra truy vấn
+
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, orderId);
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
+                System.out.println("Found order item with ID: " + resultSet.getInt("order_item_id")); // Kiểm tra từng dòng dữ liệu
+
+                // Cập nhật OrderItem với product_name
                 OrderItem orderItem = new OrderItem(
                         resultSet.getInt("order_item_id"),
                         resultSet.getInt("order_id"),
                         resultSet.getInt("product_id"),
+                        resultSet.getString("product_name"), // Lấy tên sản phẩm
                         resultSet.getInt("quantity"),
                         resultSet.getDouble("price")
                 );
                 orderItemList.add(orderItem);
             }
 
-            orderItemsTable.setItems(orderItemList);
+            System.out.println("Total order items loaded: " + orderItemList.size()); // Kiểm tra số lượng item được tải về
+            orderItemsTable.setItems(orderItemList); // Gán dữ liệu vào TableView
         } catch (SQLException e) {
             showAlert("Lỗi Cơ Sở Dữ Liệu", "Không thể tải danh sách sản phẩm từ cơ sở dữ liệu.");
             e.printStackTrace();
         }
     }
 
-    // Thêm đơn hàng mới
-    @FXML
-    private void handleAddOrder() {
-        Dialog<Order> dialog = new Dialog<>();
-        dialog.setTitle("Thêm Đơn Hàng Mới");
 
-        GridPane grid = new GridPane();
-        ComboBox<String> userBox = new ComboBox<>();
-        DatePicker orderDatePicker = new DatePicker();
-        ComboBox<String> statusBox = new ComboBox<>();
-        statusBox.getItems().addAll("Pending", "Shipped", "Delivered");
+    // Tải danh sách sản phẩm từ cơ sở dữ liệu và hiển thị trong ComboBox
+    private void loadProductsToComboBox() {
+        productList.clear();  // Xóa danh sách sản phẩm hiện tại trước khi tải lại
 
-        TableView<Product> productTable = new TableView<>();
-        ObservableList<Product> productList = loadProducts();
-        productTable.setItems(productList);
-        TextField quantityField = new TextField();
-
-        grid.add(new Label("Khách hàng:"), 0, 0);
-        grid.add(userBox, 1, 0);
-        grid.add(new Label("Ngày đặt hàng:"), 0, 1);
-        grid.add(orderDatePicker, 1, 1);
-        grid.add(new Label("Trạng thái:"), 0, 2);
-        grid.add(statusBox, 1, 2);
-        grid.add(new Label("Sản phẩm:"), 0, 3);
-        grid.add(productTable, 1, 3);
-        grid.add(new Label("Số lượng:"), 0, 4);
-        grid.add(quantityField, 1, 4);
-
-        dialog.getDialogPane().setContent(grid);
-        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
-
-        dialog.setResultConverter(button -> {
-            if (button == ButtonType.OK) {
-                try {
-                    String user = userBox.getValue();
-                    String orderDate = orderDatePicker.getValue().toString();
-                    String status = statusBox.getValue();
-                    Product selectedProduct = productTable.getSelectionModel().getSelectedItem();
-                    int quantity = Integer.parseInt(quantityField.getText());
-
-                    if (selectedProduct == null) {
-                        showAlert("Lỗi", "Vui lòng chọn một sản phẩm.");
-                        return null;
-                    }
-
-                    double price = selectedProduct.getPrice();
-                    double total = price * quantity;
-
-                    Order newOrder = saveOrderToDatabase(user, orderDate, status, selectedProduct.getProductId(), quantity, price, total);
-                    if (newOrder != null) {
-                        orderList.add(newOrder);
-                    }
-                } catch (NumberFormatException e) {
-                    showAlert("Lỗi", "Vui lòng nhập đúng giá trị cho các trường.");
-                }
-            }
-            return null;
-        });
-
-        dialog.showAndWait();
-    }
-
-    // Tải danh sách sản phẩm từ cơ sở dữ liệu
-    private ObservableList<Product> loadProducts() {
-        ObservableList<Product> productList = FXCollections.observableArrayList();
         try {
-            String query = "SELECT product_id, product_name, price FROM products";
+            connection = DBConnection.getConnection();
+            String query = "SELECT product_id, product_name, price, stock_quantity FROM products"; // Thêm stock_quantity vào câu lệnh SQL
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
+
             while (resultSet.next()) {
-                productList.add(new Product(
+                Product product = new Product(
                         resultSet.getInt("product_id"),
                         resultSet.getString("product_name"),
-                        resultSet.getDouble("price")
-                ));
+                        resultSet.getDouble("price"),
+                        resultSet.getInt("stock_quantity") // Thêm stock_quantity vào constructor
+                );
+                productList.add(product);
             }
 
+            productComboBox.setItems(productList); // Cập nhật danh sách sản phẩm trong ComboBox
         } catch (SQLException e) {
+            e.printStackTrace();
             showAlert("Lỗi Cơ Sở Dữ Liệu", "Không thể tải danh sách sản phẩm từ cơ sở dữ liệu.");
-            e.printStackTrace();
         }
-        return productList;
     }
 
-    // Lưu đơn hàng vào cơ sở dữ liệu
-    private Order saveOrderToDatabase(String user, String orderDate, String status, int productId, int quantity, double price, double total) {
+    // Thêm sản phẩm vào đơn hàng
+    @FXML
+    private void handleAddOrderItem() {
         try {
-            String orderQuery = "INSERT INTO orders (user_id, order_date, status, total) VALUES ((SELECT user_id FROM users WHERE name = ?), ?, ?, ?)";
-            PreparedStatement orderStatement = connection.prepareStatement(orderQuery, Statement.RETURN_GENERATED_KEYS);
-            orderStatement.setString(1, user);
-            orderStatement.setString(2, orderDate);
-            orderStatement.setString(3, status);
-            orderStatement.setDouble(4, total);
-            int rowsAffected = orderStatement.executeUpdate();
+            Product selectedProduct = productComboBox.getSelectionModel().getSelectedItem();
+            int quantity = Integer.parseInt(quantityField.getText());
 
-            if (rowsAffected > 0) {
-                ResultSet generatedKeys = orderStatement.getGeneratedKeys();
-                if (generatedKeys.next()) {
-                    int orderId = generatedKeys.getInt(1);
-
-                    // Lưu các sản phẩm trong đơn hàng vào bảng order_items
-                    String orderItemQuery = "INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)";
-                    PreparedStatement orderItemStatement = connection.prepareStatement(orderItemQuery);
-                    orderItemStatement.setInt(1, orderId);
-                    orderItemStatement.setInt(2, productId);
-                    orderItemStatement.setInt(3, quantity);
-                    orderItemStatement.setDouble(4, price);
-                    orderItemStatement.executeUpdate();
-
-                    return new Order(orderId, user, orderDate, status, total, "Địa chỉ giao hàng");
-                }
+            // Kiểm tra nếu sản phẩm đã được chọn
+            if (selectedProduct == null) {
+                showErrorAlert("Lỗi", "Vui lòng chọn sản phẩm.");
+                return;
             }
+
+            // Kiểm tra số lượng nhập vào phải lớn hơn 0
+            if (quantity <= 0) {
+                showErrorAlert("Lỗi", "Số lượng sản phẩm phải lớn hơn 0.");
+                return;
+            }
+
+            // Kiểm tra số lượng tồn kho của sản phẩm
+            int stockQuantity = selectedProduct.getStockQuantity();  // Kiểu int nên không so sánh với null
+            if (quantity > stockQuantity) {
+                showErrorAlert("Lỗi", "Số lượng tồn kho không đủ. Số lượng còn lại: " + stockQuantity);
+                return;
+            }
+
+            // Lấy đơn hàng đã được chọn
+            Order selectedOrder = orderTable.getSelectionModel().getSelectedItem();
+            double price = selectedProduct.getPrice();
+            int productId = selectedProduct.getProductId();
+
+            // Trường hợp không có đơn hàng được chọn, thêm sản phẩm vào danh sách tạm thời
+            if (selectedOrder == null) {
+                OrderItem orderItem = new OrderItem(productId, selectedProduct.getProductName(), quantity, price);
+                orderItemList.add(orderItem);
+                orderItemsTable.setItems(orderItemList);  // Cập nhật hiển thị sản phẩm trong bảng
+                showSuccessAlert("Thành công", "Sản phẩm đã được thêm vào đơn hàng tạm thời.");
+            } else {
+                // Trường hợp có đơn hàng được chọn, thêm sản phẩm vào cơ sở dữ liệu
+                String addOrderItemQuery = "INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)";
+                PreparedStatement orderItemStatement = connection.prepareStatement(addOrderItemQuery);
+                orderItemStatement.setInt(1, selectedOrder.getOrderId());  // Cập nhật với order ID
+                orderItemStatement.setInt(2, productId);
+                orderItemStatement.setInt(3, quantity);
+                orderItemStatement.setDouble(4, price);
+                orderItemStatement.executeUpdate();
+
+                // Thêm vào danh sách sản phẩm tạm thời
+                OrderItem orderItem = new OrderItem(productId, selectedProduct.getProductName(), quantity, price);
+                orderItemList.add(orderItem);
+                orderItemsTable.setItems(orderItemList);
+
+                // Cập nhật tổng tiền đơn hàng
+                double newTotal = selectedOrder.getTotal() + (price * quantity);
+                updateOrderTotal(selectedOrder.getOrderId(), newTotal);
+                selectedOrder.setTotal(newTotal);
+
+                orderTable.refresh();  // Cập nhật lại bảng hiển thị
+
+                showSuccessAlert("Thành công", "Sản phẩm đã được thêm vào đơn hàng.");
+            }
+        } catch (NumberFormatException e) {
+            showErrorAlert("Lỗi", "Vui lòng nhập số lượng hợp lệ.");
         } catch (SQLException e) {
-            showAlert("Lỗi Cơ Sở Dữ Liệu", "Không thể lưu đơn hàng vào cơ sở dữ liệu.");
+            showErrorAlert("Lỗi Cơ Sở Dữ Liệu", "Có lỗi xảy ra trong quá trình thêm sản phẩm vào đơn hàng.");
             e.printStackTrace();
         }
-        return null;
     }
 
-    // Xóa đơn hàng
+    // Phương thức cập nhật số lượng tồn kho trong cơ sở dữ liệu
+    private void updateProductStock(int productId, int newStockQuantity) throws SQLException {
+        String updateStockQuery = "UPDATE products SET stock_quantity = ? WHERE product_id = ?";
+        PreparedStatement updateStockStatement = connection.prepareStatement(updateStockQuery);
+        updateStockStatement.setInt(1, newStockQuantity);
+        updateStockStatement.setInt(2, productId);
+        updateStockStatement.executeUpdate();
+    }
+    // Hiển thị thông báo lỗi
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+    @FXML
+    private void handleAddOrder() {
+        try {
+            // Lấy thông tin khách hàng và trạng thái
+            String customerName = customerNameField.getText();
+            String status = statusComboBox.getValue();
+            double total = 0.0;
+
+            // Kiểm tra nếu tên khách hàng rỗng
+            if (customerName == null || customerName.isEmpty()) {
+                showErrorAlert("Lỗi", "Vui lòng nhập tên khách hàng.");
+                return;
+            }
+
+            // Kiểm tra nếu không có sản phẩm nào trong đơn hàng
+            if (orderItemList.isEmpty()) {
+                showErrorAlert("Lỗi", "Vui lòng thêm ít nhất một sản phẩm vào đơn hàng.");
+                return;
+            }
+
+            // Tự động thiết lập ngày đặt hàng bằng ngày và giờ hiện tại
+            LocalDateTime currentDateTime = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            String orderDate = currentDateTime.format(formatter);
+
+            // Lưu đơn hàng vào cơ sở dữ liệu và lấy ID của đơn hàng
+            int orderId = saveOrderToDatabase(customerName, orderDate, status, total);
+
+            // Lưu sản phẩm trong đơn hàng vào cơ sở dữ liệu và cập nhật tổng tiền
+            for (OrderItem item : orderItemList) {
+                saveOrderItemToDatabase(orderId, item);
+                total += item.getPrice() * item.getQuantity(); // Tính tổng tiền
+            }
+
+            // Cập nhật tổng số tiền của đơn hàng vào cơ sở dữ liệu
+            updateOrderTotal(orderId, total);
+
+            // Thêm đơn hàng mới vào danh sách hiển thị
+            Order newOrder = new Order(orderId, customerName, orderDate, status, total, "Địa chỉ giao hàng");
+            orderList.add(newOrder);
+
+            // Hiển thị thông báo thành công
+            // Sau khi cập nhật thành công, hiển thị thông báo
+            showSuccessAlert("Thành công", "Đơn hàng đã được thêm thành công vào lúc " + orderDate);
+
+
+            // Xóa danh sách sản phẩm sau khi thêm đơn hàng
+            orderItemList.clear();
+            orderItemsTable.setItems(orderItemList);
+
+        } catch (SQLException e) {
+            showErrorAlert("Lỗi Cơ Sở Dữ Liệu", "Có lỗi xảy ra trong quá trình thêm đơn hàng.");
+            e.printStackTrace();
+        } catch (Exception e) {
+            showErrorAlert("Lỗi", "Có lỗi xảy ra trong quá trình xử lý.");
+            e.printStackTrace();
+        }
+    }
+
+    // Phương thức lưu đơn hàng vào cơ sở dữ liệu
+    private int saveOrderToDatabase(String customerName, String orderDate, String status, double total) throws SQLException {
+        // Thay đổi câu truy vấn để lưu tên khách hàng trực tiếp vào orders
+        String orderQuery = "INSERT INTO orders (customer_name, order_date, status, total) VALUES (?, ?, ?, ?)";
+        PreparedStatement orderStatement = connection.prepareStatement(orderQuery, PreparedStatement.RETURN_GENERATED_KEYS);
+        orderStatement.setString(1, customerName);  // Lưu trực tiếp tên khách hàng
+        orderStatement.setString(2, orderDate);
+        orderStatement.setString(3, status);
+        orderStatement.setDouble(4, total);
+        orderStatement.executeUpdate();
+
+        // Lấy ID của đơn hàng vừa tạo
+        ResultSet generatedKeys = orderStatement.getGeneratedKeys();
+        if (generatedKeys.next()) {
+            return generatedKeys.getInt(1);
+        } else {
+            throw new SQLException("Tạo đơn hàng thất bại, không thể lấy ID đơn hàng.");
+        }
+    }
+
+
+    // Phương thức lưu sản phẩm trong đơn hàng vào cơ sở dữ liệu
+    private void saveOrderItemToDatabase(int orderId, OrderItem item) throws SQLException {
+        String orderItemQuery = "INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)";
+        PreparedStatement orderItemStatement = connection.prepareStatement(orderItemQuery);
+        orderItemStatement.setInt(1, orderId);
+        orderItemStatement.setInt(2, item.getProductId());
+        orderItemStatement.setInt(3, item.getQuantity());
+        orderItemStatement.setDouble(4, item.getPrice());
+        orderItemStatement.executeUpdate();
+    }
+
+    // Phương thức cập nhật tổng số tiền của đơn hàng
+    private void updateOrderTotal(int orderId, double total) throws SQLException {
+        String updateTotalQuery = "UPDATE orders SET total = ? WHERE order_id = ?";
+        PreparedStatement updateStatement = connection.prepareStatement(updateTotalQuery);
+        updateStatement.setDouble(1, total);
+        updateStatement.setInt(2, orderId);
+        updateStatement.executeUpdate();
+    }
+
+
+    // Phương thức hiển thị thông báo lỗi
+    private void showErrorAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+    // Phương thức hiển thị thông báo thành công
+    private void showSuccessAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION); // Sử dụng hộp thoại thông báo thông thường
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+
+
+    @FXML
+    private void handleEditOrder() {
+        Order selectedOrder = orderTable.getSelectionModel().getSelectedItem();
+        if (selectedOrder != null) {
+            try {
+                // Lấy tên khách hàng và trạng thái từ giao diện
+                String customerName = customerNameField.getText();
+                String status = statusComboBox.getValue();
+
+                // Thiết lập ngày và giờ hiện tại (định dạng đầy đủ ngày và giờ)
+                LocalDateTime currentDateTime = LocalDateTime.now();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                String orderDate = currentDateTime.format(formatter);
+
+                // Cập nhật câu lệnh SQL để lưu trực tiếp tên khách hàng thay vì user_id
+                String updateOrderQuery = "UPDATE orders SET customer_name = ?, status = ?, order_date = ? WHERE order_id = ?";
+                PreparedStatement updateOrderStatement = connection.prepareStatement(updateOrderQuery);
+                updateOrderStatement.setString(1, customerName);
+                updateOrderStatement.setString(2, status);
+                updateOrderStatement.setString(3, orderDate);  // Sử dụng orderDate với định dạng đầy đủ ngày và giờ
+                updateOrderStatement.setInt(4, selectedOrder.getOrderId());
+                updateOrderStatement.executeUpdate();
+
+                // Cập nhật lại thông tin trong đối tượng Order và bảng hiển thị
+                selectedOrder.setCustomerName(customerName);  // Đổi từ setUserId sang setCustomerName
+                selectedOrder.setStatus(status);
+                selectedOrder.setOrderDate(orderDate);  // Cập nhật cả thời gian vào đối tượng Order
+
+                orderTable.refresh();  // Cập nhật lại bảng hiển thị
+
+                showSuccessAlert("Thành công", "Đơn hàng đã được cập nhật thành công.");
+            } catch (SQLException e) {
+                showAlert("Lỗi", "Không thể cập nhật đơn hàng vào cơ sở dữ liệu.");
+                e.printStackTrace();
+            }
+        } else {
+            showAlert("Lỗi", "Vui lòng chọn đơn hàng để chỉnh sửa.");
+        }
+    }
+
+
     @FXML
     private void handleDeleteOrder() {
         Order selectedOrder = orderTable.getSelectionModel().getSelectedItem();
         if (selectedOrder != null) {
             try {
-                String query = "DELETE FROM orders WHERE order_id = ?";
-                PreparedStatement statement = connection.prepareStatement(query);
-                statement.setInt(1, selectedOrder.getOrderId());
-                statement.executeUpdate();
+                // Xóa các sản phẩm trong đơn hàng trước
+                String deleteOrderItemsQuery = "DELETE FROM order_items WHERE order_id = ?";
+                PreparedStatement deleteOrderItemsStatement = connection.prepareStatement(deleteOrderItemsQuery);
+                deleteOrderItemsStatement.setInt(1, selectedOrder.getOrderId());
+                deleteOrderItemsStatement.executeUpdate();
 
+                // Sau đó xóa đơn hàng
+                String deleteOrderQuery = "DELETE FROM orders WHERE order_id = ?";
+                PreparedStatement deleteOrderStatement = connection.prepareStatement(deleteOrderQuery);
+                deleteOrderStatement.setInt(1, selectedOrder.getOrderId());
+                deleteOrderStatement.executeUpdate();
+
+                // Xóa đơn hàng khỏi danh sách
                 orderList.remove(selectedOrder);
+
+                // Xóa thông tin hiển thị
+                clearOrderDetails();
             } catch (SQLException e) {
                 showAlert("Lỗi", "Không thể xóa đơn hàng từ cơ sở dữ liệu.");
                 e.printStackTrace();
@@ -246,121 +464,45 @@ public class OrderController {
             showAlert("Lỗi", "Vui lòng chọn đơn hàng để xóa.");
         }
     }
+    private void clearOrderDetails() {
+        customerNameField.clear();
+        statusComboBox.setValue(null);
+        orderDatePicker.setValue(null);
+        orderItemList.clear();
+    }
 
-    // Chỉnh sửa đơn hàng
     @FXML
-    private void handleEditOrder() {
-        Order selectedOrder = orderTable.getSelectionModel().getSelectedItem();
-        if (selectedOrder != null) {
-            Dialog<Order> dialog = new Dialog<>();
-            dialog.setTitle("Chỉnh Sửa Đơn Hàng");
+    private void handleDeleteOrderItem() {
+        // Lấy sản phẩm được chọn từ bảng orderItemsTable
+        OrderItem selectedOrderItem = orderItemsTable.getSelectionModel().getSelectedItem();
+        Order selectedOrder = orderTable.getSelectionModel().getSelectedItem(); // Lấy đơn hàng hiện tại
 
-            GridPane grid = new GridPane();
-            ComboBox<String> userBox = new ComboBox<>();
-            DatePicker orderDatePicker = new DatePicker();
-            ComboBox<String> statusBox = new ComboBox<>();
-            statusBox.getItems().addAll("Pending", "Shipped", "Delivered");
+        if (selectedOrderItem != null && selectedOrder != null) {
+            try {
+                // Xóa sản phẩm khỏi cơ sở dữ liệu
+                String deleteOrderItemQuery = "DELETE FROM order_items WHERE order_item_id = ?";
+                PreparedStatement statement = connection.prepareStatement(deleteOrderItemQuery);
+                statement.setInt(1, selectedOrderItem.getOrderItemId());
+                statement.executeUpdate();
 
-            userBox.setValue(selectedOrder.getUserId());
-            orderDatePicker.setValue(java.time.LocalDate.parse(selectedOrder.getOrderDate()));
-            statusBox.setValue(selectedOrder.getStatus());
+                // Cập nhật tổng tiền đơn hàng
+                double newTotal = selectedOrder.getTotal() - (selectedOrderItem.getPrice() * selectedOrderItem.getQuantity());
+                updateOrderTotal(selectedOrder.getOrderId(), newTotal);
+                selectedOrder.setTotal(newTotal);
 
-            TableView<Product> productTable = new TableView<>();
-            ObservableList<Product> productList = loadProducts();
-            productTable.setItems(productList);
-            TextField quantityField = new TextField();
-            quantityField.setText(String.valueOf(selectedOrder.getTotal()));
+                // Xóa sản phẩm khỏi danh sách hiển thị
+                orderItemList.remove(selectedOrderItem);
+                orderItemsTable.setItems(orderItemList);
+                orderTable.refresh();  // Cập nhật lại bảng đơn hàng
 
-            grid.add(new Label("Khách hàng:"), 0, 0);
-            grid.add(userBox, 1, 0);
-            grid.add(new Label("Ngày đặt hàng:"), 0, 1);
-            grid.add(orderDatePicker, 1, 1);
-            grid.add(new Label("Trạng thái:"), 0, 2);
-            grid.add(statusBox, 1, 2);
-            grid.add(new Label("Sản phẩm:"), 0, 3);
-            grid.add(productTable, 1, 3);
-            grid.add(new Label("Số lượng:"), 0, 4);
-            grid.add(quantityField, 1, 4);
-
-            dialog.getDialogPane().setContent(grid);
-            dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
-
-            dialog.setResultConverter(button -> {
-                if (button == ButtonType.OK) {
-                    try {
-                        String user = userBox.getValue();
-                        String orderDate = orderDatePicker.getValue().toString();
-                        String status = statusBox.getValue();
-                        Product selectedProduct = productTable.getSelectionModel().getSelectedItem();
-                        int quantity = Integer.parseInt(quantityField.getText());
-
-                        if (selectedProduct == null) {
-                            showAlert("Lỗi", "Vui lòng chọn một sản phẩm.");
-                            return null;
-                        }
-
-                        double price = selectedProduct.getPrice();
-                        double total = price * quantity;
-
-                        // Cập nhật đơn hàng trong cơ sở dữ liệu
-                        updateOrderInDatabase(selectedOrder.getOrderId(), user, orderDate, status, selectedProduct.getProductId(), quantity, price, total);
-
-                        selectedOrder.setUserId(user);
-                        selectedOrder.setOrderDate(orderDate);
-                        selectedOrder.setStatus(status);
-                        selectedOrder.setTotal(total);
-
-                        orderTable.refresh();
-
-                    } catch (NumberFormatException e) {
-                        showAlert("Lỗi", "Vui lòng nhập đúng giá trị cho các trường.");
-                    }
-                }
-                return null;
-            });
-
-            dialog.showAndWait();
+                showSuccessAlert("Thành công", "Sản phẩm đã được xóa khỏi đơn hàng.");
+            } catch (SQLException e) {
+                showErrorAlert("Lỗi Cơ Sở Dữ Liệu", "Có lỗi xảy ra trong quá trình xóa sản phẩm khỏi đơn hàng.");
+                e.printStackTrace();
+            }
         } else {
-            showAlert("Lỗi", "Vui lòng chọn đơn hàng để chỉnh sửa.");
+            showErrorAlert("Lỗi", "Vui lòng chọn sản phẩm để xóa.");
         }
     }
 
-    private void updateOrderInDatabase(int orderId, String user, String orderDate, String status, int productId, int quantity, double price, double total) {
-        try {
-            String orderQuery = "UPDATE orders SET user_id = (SELECT user_id FROM users WHERE name = ?), order_date = ?, status = ?, total = ? WHERE order_id = ?";
-            PreparedStatement orderStatement = connection.prepareStatement(orderQuery);
-            orderStatement.setString(1, user);
-            orderStatement.setString(2, orderDate);
-            orderStatement.setString(3, status);
-            orderStatement.setDouble(4, total);
-            orderStatement.setInt(5, orderId);
-            orderStatement.executeUpdate();
-
-            String orderItemQuery = "UPDATE order_items SET product_id = ?, quantity = ?, price = ? WHERE order_id = ?";
-            PreparedStatement orderItemStatement = connection.prepareStatement(orderItemQuery);
-            orderItemStatement.setInt(1, productId);
-            orderItemStatement.setInt(2, quantity);
-            orderItemStatement.setDouble(3, price);
-            orderItemStatement.setInt(4, orderId);
-            orderItemStatement.executeUpdate();
-
-        } catch (SQLException e) {
-            showAlert("Lỗi Cơ Sở Dữ Liệu", "Không thể cập nhật đơn hàng vào cơ sở dữ liệu.");
-            e.printStackTrace();
-        }
-    }
-
-    // Hiển thị thông báo lỗi
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-
-    // Xử lý thêm sản phẩm vào đơn hàng
-    @FXML
-    private void handleAddOrderItem() {
-        System.out.println("Thêm sản phẩm vào đơn hàng");
-    }
 }

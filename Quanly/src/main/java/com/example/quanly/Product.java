@@ -25,10 +25,11 @@ public class Product {
     }
 
     // Constructor ngắn với productId, productName, và price
-    public Product(int productId, String productName, double price) {
+    public Product(int productId, String productName, double price, int stockQuantity) {
         this.productId = new SimpleIntegerProperty(productId);
         this.productName = new SimpleStringProperty(productName);
         this.price = new SimpleDoubleProperty(price);
+        this.stockQuantity = new SimpleIntegerProperty(stockQuantity); // Khởi tạo giá trị tồn kho mặc định là 0
     }
 
     // Constructor mặc định (không tham số)
@@ -125,5 +126,11 @@ public class Product {
 
     public StringProperty createdAtProperty() {
         return createdAt;
+    }
+
+    // Override phương thức toString để hiển thị tên sản phẩm trong ComboBox
+    @Override
+    public String toString() {
+        return this.getProductName(); // Trả về tên sản phẩm thay vì thông tin đối tượng mặc định
     }
 }

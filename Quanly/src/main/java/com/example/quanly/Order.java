@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Order {
     private IntegerProperty orderId;
-    private StringProperty userId;
+    private StringProperty customerName;  // Thay thế userId bằng customerName
     private StringProperty orderDate;
     private StringProperty status;
     private DoubleProperty total;
@@ -14,9 +14,9 @@ public class Order {
     private List<OrderItem> orderItems;  // Chứa nhiều sản phẩm
 
     // Constructor đầy đủ
-    public Order(int orderId, String userId, String orderDate, String status, double total, String shippingAddress) {
+    public Order(int orderId, String customerName, String orderDate, String status, double total, String shippingAddress) {
         this.orderId = new SimpleIntegerProperty(orderId);
-        this.userId = new SimpleStringProperty(userId);
+        this.customerName = new SimpleStringProperty(customerName);  // Sử dụng customerName thay cho userId
         this.orderDate = new SimpleStringProperty(orderDate);
         this.status = new SimpleStringProperty(status);
         this.total = new SimpleDoubleProperty(total);
@@ -25,8 +25,8 @@ public class Order {
     }
 
     // Constructor không có orderItems để thêm dần các sản phẩm vào sau
-    public Order(int orderId, String userId, String orderDate, String status, double total, String shippingAddress, List<OrderItem> orderItems) {
-        this(orderId, userId, orderDate, status, total, shippingAddress);
+    public Order(int orderId, String customerName, String orderDate, String status, double total, String shippingAddress, List<OrderItem> orderItems) {
+        this(orderId, customerName, orderDate, status, total, shippingAddress);
         this.orderItems = orderItems != null ? orderItems : new ArrayList<>();
     }
 
@@ -34,6 +34,7 @@ public class Order {
     public int getOrderId() {
         return orderId.get();
     }
+
 
     public IntegerProperty orderIdProperty() {
         return orderId;
@@ -43,16 +44,16 @@ public class Order {
         this.orderId.set(orderId);
     }
 
-    public String getUserId() {
-        return userId.get();
+    public String getCustomerName() {  // Đổi từ getUserId() sang getCustomerName()
+        return customerName.get();
     }
 
-    public StringProperty userIdProperty() {
-        return userId;
+    public StringProperty customerNameProperty() {  // Đổi từ userIdProperty() sang customerNameProperty()
+        return customerName;
     }
 
-    public void setUserId(String userId) {
-        this.userId.set(userId);
+    public void setCustomerName(String customerName) {  // Đổi từ setUserId() sang setCustomerName()
+        this.customerName.set(customerName);
     }
 
     public String getOrderDate() {

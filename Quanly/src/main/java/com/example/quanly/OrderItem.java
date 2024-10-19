@@ -6,20 +6,29 @@ public class OrderItem {
     private IntegerProperty orderItemId;
     private IntegerProperty orderId;
     private IntegerProperty productId;
-    private StringProperty productName; // Thêm thuộc tính productName
+    private StringProperty productName;
     private IntegerProperty quantity;
     private DoubleProperty price;
 
-    public OrderItem(int orderItemId, int orderId, int productId, int quantity, double price) {
+    // Constructor đầy đủ với orderItemId, orderId, productId, quantity, price
+    public OrderItem(int orderItemId, int orderId, int productId, String productName, int quantity, double price) {
         this.orderItemId = new SimpleIntegerProperty(orderItemId);
         this.orderId = new SimpleIntegerProperty(orderId);
         this.productId = new SimpleIntegerProperty(productId);
+        this.productName = new SimpleStringProperty(productName);
         this.quantity = new SimpleIntegerProperty(quantity);
         this.price = new SimpleDoubleProperty(price);
     }
 
+    // Constructor cho sản phẩm mới thêm vào đơn hàng
+    public OrderItem(int productId, String productName, int quantity, double price) {
+        this.productId = new SimpleIntegerProperty(productId);
+        this.productName = new SimpleStringProperty(productName);
+        this.quantity = new SimpleIntegerProperty(quantity);
+        this.price = new SimpleDoubleProperty(price);
+    }
 
-    // Getters và Setters
+    // Getters và Setters cho các thuộc tính
     public int getOrderItemId() {
         return orderItemId.get();
     }
@@ -56,17 +65,14 @@ public class OrderItem {
         this.productId.set(productId);
     }
 
-    // Getter cho productName
     public String getProductName() {
         return productName.get();
     }
 
-    // Setter cho productName
     public void setProductName(String productName) {
         this.productName.set(productName);
     }
 
-    // Property method cho productName
     public StringProperty productNameProperty() {
         return productName;
     }
@@ -94,5 +100,4 @@ public class OrderItem {
     public void setPrice(double price) {
         this.price.set(price);
     }
-
 }
