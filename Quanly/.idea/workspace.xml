@@ -6,22 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="e1d603b8-090b-4744-9440-20e34b12d1e2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/quanly/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/quanly/DBConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/quanly/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/quanly/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/quanly/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/quanly/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/quanly/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/quanly/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/quanly/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/quanly/ProductController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/quanly/order.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/quanly/order.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/quanly/product.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/quanly/product.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/quanly/DBConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/quanly/DBConnection.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/quanly/OrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/quanly/OrderController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/quanly/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/quanly/Product.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/quanly/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/quanly/ProductController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/quanly/order.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/quanly/order.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/quanly/product.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/quanly/product.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user_data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/user_data.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Quanlybanhang/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Quanlybanhang/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Quanlybanhang/src/main/java/com/example/quanlybanhang/Controller/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Quanlybanhang/src/main/java/com/example/quanlybanhang/View/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Quanlybanhang/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Quanlybanhang/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,8 +80,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.22855.74" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.22855.74" />
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23339.11" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23339.11" />
       </set>
     </attachedChunks>
   </component>
@@ -134,6 +124,15 @@
       <workItem from="1729430910057" duration="3780000" />
       <workItem from="1729434744399" duration="41000" />
       <workItem from="1729434794352" duration="86000" />
+      <workItem from="1729434891376" duration="134000" />
+      <workItem from="1729435032826" duration="58000" />
+      <workItem from="1729435564142" duration="22000" />
+      <workItem from="1729435607141" duration="30000" />
+      <workItem from="1729435646818" duration="7000" />
+      <workItem from="1729435666352" duration="113000" />
+      <workItem from="1729435793293" duration="272000" />
+      <workItem from="1729436085856" duration="7931000" />
+      <workItem from="1729460933025" duration="1640000" />
     </task>
     <servers />
   </component>

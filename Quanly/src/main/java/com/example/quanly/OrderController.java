@@ -3,8 +3,13 @@ package com.example.quanly;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -432,6 +437,7 @@ public class OrderController {
         } else {
             showAlert("Lỗi", "Vui lòng chọn đơn hàng để chỉnh sửa.");
         }
+        reset();
     }
 
 
@@ -494,7 +500,7 @@ public class OrderController {
                 // Xóa sản phẩm khỏi danh sách hiển thị
                 orderItemList.remove(selectedOrderItem);
                 orderItemsTable.setItems(orderItemList);
-                orderTable.refresh();  // Cập nhật lại bảng đơn hàng
+                orderItemsTable.refresh();  // Cập nhật lại bảng sản phẩm trong đơn hàng
 
                 showSuccessAlert("Thành công", "Sản phẩm đã được xóa khỏi đơn hàng.");
             } catch (SQLException e) {
@@ -505,23 +511,84 @@ public class OrderController {
             showErrorAlert("Lỗi", "Vui lòng chọn sản phẩm để xóa.");
         }
     }
+
     public void handleSearchOrderById() {
-        String orderIdText = orderIdSearchField.getText();
-        if (!orderIdText.isEmpty()) {
-            try {
-                int orderId = Integer.parseInt(orderIdText);
-                for (Order order : orderList) {
-                    if (order.getOrderId() == orderId) {
-                        orderTable.getSelectionModel().select(order);
-                        return;  // Dừng sau khi tìm thấy đơn hàng
-                    }
+        String orderIdText = orderIdSearchField.getText().trim(); // Lấy và loại bỏ khoảng trắng
+
+        // Kiểm tra nếu trường ID đơn hàng còn trống
+        if (orderIdText.isEmpty()) {
+            // Hiển thị thông báo yêu cầu nhập ID
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText(null);
+            alert.setContentText("Vui lòng nhập ID đơn hàng để tìm kiếm.");
+            alert.showAndWait();
+            return; // Dừng thực hiện nếu ID trống
+        }
+
+        // Nếu trường ID không trống, tiếp tục thực hiện tìm kiếm
+        try {
+            int orderId = Integer.parseInt(orderIdText);
+            for (Order order : orderList) {
+                if (order.getOrderId() == orderId) {
+                    orderTable.getSelectionModel().select(order);
+                    return;  // Dừng sau khi tìm thấy đơn hàng
                 }
-                // Hiển thị thông báo nếu không tìm thấy
-                System.out.println("Không tìm thấy đơn hàng với ID: " + orderId);
-            } catch (NumberFormatException e) {
-                System.out.println("Vui lòng nhập ID hợp lệ");
             }
+            // Hiển thị thông báo nếu không tìm thấy
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText(null);
+            alert.setContentText("Không tìm thấy đơn hàng với ID: " + orderId);
+            alert.showAndWait();
+        } catch (NumberFormatException e) {
+            // Hiển thị thông báo nếu ID không hợp lệ
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Thông báo lỗi");
+            alert.setHeaderText(null);
+            alert.setContentText("Vui lòng nhập ID hợp lệ.");
+            alert.showAndWait();
         }
     }
+    private void reset() {
+        // Làm mới các trường nhập liệu
+        customerNameField.clear(); // Làm mới trường nhập tên khách hàng
+        orderDatePicker.setValue(null); // Đặt lại ngày đặt hàng
+        statusComboBox.getSelectionModel().clearSelection(); // Xóa lựa chọn trạng thái
 
+        // Xóa lựa chọn trong bảng đơn hàng và sản phẩm
+        orderTable.getSelectionModel().clearSelection(); // Xóa lựa chọn trong bảng đơn hàng
+        orderItemsTable.getSelectionModel().clearSelection(); // Xóa lựa chọn trong bảng sản phẩm trong đơn hàng
+
+        // Xóa sản phẩm trong bảng sản phẩm của đơn hàng
+        orderItemList.clear(); // Xóa tất cả sản phẩm trong danh sách
+        orderItemsTable.setItems(FXCollections.observableArrayList(orderItemList)); // Cập nhật bảng sản phẩm
+
+        // Reset phần chọn sản phẩm và nhập số lượng
+        productComboBox.getSelectionModel().clearSelection(); // Xóa lựa chọn sản phẩm
+        quantityField.clear(); // Làm trống trường nhập số lượng
+
+        // Nếu cần thiết, có thể làm mới các danh sách hiển thị
+        orderItemsTable.setItems(FXCollections.observableArrayList(orderItemList)); // Đặt lại danh sách sản phẩm
+    }
+    @FXML
+    private void handleGoBack() {
+        try {
+            // Tải giao diện product.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("product.fxml"));
+            Parent productView = loader.load();
+
+            // Tạo một cảnh mới với giao diện sản phẩm
+            Stage stage = (Stage) orderTable.getScene().getWindow(); // Lấy cửa sổ hiện tại
+            Scene scene = new Scene(productView);
+
+            // Đặt cảnh mới cho cửa sổ
+            stage.setScene(scene);
+            stage.setTitle("Quản lý Sản phẩm"); // Tùy chỉnh tiêu đề cửa sổ
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showErrorAlert("Lỗi", "Không thể tải giao diện sản phẩm.");
+        }
+    }
 }

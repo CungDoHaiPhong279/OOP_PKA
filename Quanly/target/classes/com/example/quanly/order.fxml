@@ -18,14 +18,8 @@
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
 
-    <!-- Thêm trường tìm kiếm đơn hàng theo ID -->
-    <HBox spacing="10" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="2">
-        <TextField fx:id="orderIdSearchField" promptText="Tìm kiếm đơn hàng theo ID" prefWidth="200"/>
-        <Button text="Tìm kiếm" onAction="#handleSearchOrderById"/>
-    </HBox>
-
     <!-- Bảng quản lý đơn hàng -->
-    <VBox spacing="10" GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.columnSpan="2">
+    <VBox spacing="10" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="2">
         <Label text="Danh sách đơn hàng"/>
         <TableView fx:id="orderTable" prefHeight="200">
             <columns>
@@ -39,11 +33,15 @@
     </VBox>
 
     <!-- Thông tin khách hàng và đơn hàng -->
-    <VBox spacing="10" GridPane.rowIndex="2" GridPane.columnIndex="0">
+    <VBox spacing="10" GridPane.rowIndex="1" GridPane.columnIndex="0">
         <Label text="Thông tin khách hàng và đơn hàng"/>
         <GridPane hgap="10" vgap="10">
             <Label text="Khách hàng:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-            <TextField fx:id="customerNameField" promptText="Nhập tên khách hàng" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <HBox spacing="10" GridPane.rowIndex="0" GridPane.columnIndex="1">
+                <TextField fx:id="customerNameField" promptText="Nhập tên khách hàng" prefWidth="200"/>
+                <TextField fx:id="orderIdSearchField" promptText="Tìm kiếm đơn hàng theo ID" prefWidth="200"/>
+                <Button text="Tìm kiếm" onAction="#handleSearchOrderById"/>
+            </HBox>
 
             <Label text="Ngày đặt hàng:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
             <DatePicker fx:id="orderDatePicker" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
@@ -61,10 +59,8 @@
         </GridPane>
     </VBox>
 
-
-
     <!-- Quản lý sản phẩm trong đơn hàng -->
-    <VBox spacing="10" GridPane.rowIndex="4" GridPane.columnIndex="0" GridPane.columnSpan="2">
+    <VBox spacing="10" GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="2">
         <Label text="Sản phẩm trong đơn hàng"/>
         <TableView fx:id="orderItemsTable" prefHeight="150">
             <columns>
@@ -90,10 +86,15 @@
     </VBox>
 
     <!-- Nút thao tác thêm, chỉnh sửa, xóa đơn hàng -->
-    <HBox spacing="10" alignment="center" GridPane.rowIndex="5" GridPane.columnIndex="0" GridPane.columnSpan="2">
+    <HBox spacing="10" alignment="center" GridPane.rowIndex="3" GridPane.columnIndex="0" GridPane.columnSpan="2">
         <Button text="Thêm đơn hàng" onAction="#handleAddOrder"/>
         <Button text="Chỉnh sửa đơn hàng" onAction="#handleEditOrder"/>
         <Button text="Xóa đơn hàng" onAction="#handleDeleteOrder"/>
+    </HBox>
+
+    <!-- Nút Quay lại -->
+    <HBox spacing="10" alignment="center" GridPane.rowIndex="4" GridPane.columnIndex="0" GridPane.columnSpan="2">
+        <Button text="Quay lại" onAction="#handleGoBack"/>
     </HBox>
 
 </GridPane>
