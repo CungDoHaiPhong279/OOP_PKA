@@ -6,10 +6,22 @@
   <component name="ChangeListManager">
     <list default="true" id="e1d603b8-090b-4744-9440-20e34b12d1e2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/quanly/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/quanly/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/quanly/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/quanly/RegisterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/quanly/RegisterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/quanly/RegisterController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/quanly/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/quanly/DBConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/quanly/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/quanly/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/quanly/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/quanly/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/quanly/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/quanly/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/quanly/order.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/quanly/order.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/quanly/product.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/quanly/product.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/quanly/DBConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/quanly/DBConnection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/quanly/OrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/quanly/OrderController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/quanly/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/quanly/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/quanly/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/quanly/ProductController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/quanly/order.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/quanly/order.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/quanly/product.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/quanly/product.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user_data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/user_data.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Quanlybanhang/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Quanlybanhang/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Quanlybanhang/src/main/java/com/example/quanlybanhang/Controller/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Quanlybanhang/src/main/java/com/example/quanlybanhang/View/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Quanlybanhang/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Quanlybanhang/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +31,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -57,7 +69,7 @@
     &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Java/oop_nhom5_n03/Quanlybanhang&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Java/oop_nhom5_n03/Quanly&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -118,6 +130,10 @@
       <workItem from="1729345248303" duration="20044000" />
       <workItem from="1729365554918" duration="883000" />
       <workItem from="1729367586321" duration="26000" />
+      <workItem from="1729367688157" duration="3107000" />
+      <workItem from="1729430910057" duration="3780000" />
+      <workItem from="1729434744399" duration="41000" />
+      <workItem from="1729434794352" duration="86000" />
     </task>
     <servers />
   </component>

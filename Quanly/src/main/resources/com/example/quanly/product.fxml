@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
@@ -17,6 +16,12 @@
 
     <!-- Tiêu đề -->
     <Label text="Quản Lý Sản Phẩm" style="-fx-font-size: 20px;"/>
+
+    <!-- Ô tìm kiếm và nút tìm kiếm -->
+    <HBox spacing="10">
+        <TextField fx:id="searchField" promptText="Tìm kiếm sản phẩm..."/>
+        <Button text="Tìm kiếm" onAction="#handleSearch"/>
+    </HBox>
 
     <!-- TableView để hiển thị sản phẩm -->
     <TableView fx:id="productTable">
@@ -44,4 +49,3 @@
         <Button text="Chuyển sang Đơn hàng" onAction="#handleGoToOrders"/>
     </HBox>
 </VBox>
-

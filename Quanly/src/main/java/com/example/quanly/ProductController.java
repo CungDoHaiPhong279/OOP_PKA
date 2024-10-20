@@ -1,5 +1,6 @@
 package com.example.quanly;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,7 +16,8 @@ import java.io.IOException;
 import java.sql.*;
 
 public class ProductController {
-
+    @FXML
+    private TextField searchField;
     @FXML
     private TableView<Product> productTable;
     @FXML
@@ -472,6 +474,28 @@ public class ProductController {
             e.printStackTrace();
         }
         return isValid;
+    }
+
+    @FXML
+    private void handleSearch() {
+        String keyword = searchField.getText().trim().toLowerCase();
+
+        // Nếu ô tìm kiếm trống, hiển thị lại tất cả sản phẩm
+        if (keyword.isEmpty()) {
+            productTable.setItems(productList);
+        } else {
+            // Tìm các sản phẩm có tên chứa từ khóa
+            ObservableList<Product> filteredList = FXCollections.observableArrayList();
+
+            for (Product product : productList) {
+                if (product.getName().toLowerCase().contains(keyword)) {
+                    filteredList.add(product);
+                }
+            }
+
+            // Cập nhật TableView với danh sách sản phẩm đã lọc
+            productTable.setItems(filteredList);
+        }
     }
 }
 

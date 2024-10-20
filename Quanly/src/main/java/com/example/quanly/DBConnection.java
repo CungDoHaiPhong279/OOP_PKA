@@ -1,5 +1,4 @@
 package com.example.quanly;
-import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

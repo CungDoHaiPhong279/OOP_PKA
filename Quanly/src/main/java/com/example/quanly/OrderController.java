@@ -4,14 +4,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class OrderController {
+    @FXML
+    private TextField orderIdSearchField;
 
     @FXML
     private TableView<Order> orderTable;
@@ -51,6 +51,7 @@ public class OrderController {
     private ObservableList<Order> orderList = FXCollections.observableArrayList();
     private ObservableList<OrderItem> orderItemList = FXCollections.observableArrayList();
     private ObservableList<Product> productList = FXCollections.observableArrayList();
+
     private Connection connection;
 
     public void initialize() {
@@ -502,6 +503,24 @@ public class OrderController {
             }
         } else {
             showErrorAlert("Lỗi", "Vui lòng chọn sản phẩm để xóa.");
+        }
+    }
+    public void handleSearchOrderById() {
+        String orderIdText = orderIdSearchField.getText();
+        if (!orderIdText.isEmpty()) {
+            try {
+                int orderId = Integer.parseInt(orderIdText);
+                for (Order order : orderList) {
+                    if (order.getOrderId() == orderId) {
+                        orderTable.getSelectionModel().select(order);
+                        return;  // Dừng sau khi tìm thấy đơn hàng
+                    }
+                }
+                // Hiển thị thông báo nếu không tìm thấy
+                System.out.println("Không tìm thấy đơn hàng với ID: " + orderId);
+            } catch (NumberFormatException e) {
+                System.out.println("Vui lòng nhập ID hợp lệ");
+            }
         }
     }
 

@@ -38,6 +38,9 @@ public class Product {
     }
 
     // Getters và Setters cho productId
+    public String getName() {
+        return getProductName(); // Gọi hàm getProductName() đã tồn tại
+    }
     public int getProductId() {
         return productId.get();
     }

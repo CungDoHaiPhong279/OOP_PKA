@@ -17,4 +17,6 @@ module com.example.quanlybanhang {
     // Export các package chứa mã nguồn
     exports com.example.quanlybanhang.Controller;
     exports com.example.quanlybanhang.DataBase;
+    exports com.example.quanlybanhang.View;
+    opens com.example.quanlybanhang.View to javafx.fxml;
 }
