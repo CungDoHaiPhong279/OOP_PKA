@@ -76,5 +76,5 @@ Dự án này là một hệ thống quản lý bán hàng, giúp tối ưu hóa
 ## Cách Cài Đặt
 1. Clone repository từ GitHub:
    ```bash
-   git clone -b FinaltermCode https://github.com/Nguyen1976/JAVA_OOP_PKA_Nhom_10.git
+   git clone https://github.com/CungDoHaiPhong279/oop_nhom5_n03.git
 >>>>>>> Stashed changes
