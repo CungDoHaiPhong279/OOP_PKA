@@ -1,5 +1,6 @@
-package com.example.quanly;
+package com.example.quanly.Controller;
 
+import com.example.quanly.Database.DBConnection;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -40,7 +41,7 @@ public class LoginController {
                 System.out.println("Login successful!");
                 // Chuyển đến giao diện chính của ứng dụng sau khi đăng nhập thành công
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("product.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/Quanly/product.fxml"));
                     Parent root = loader.load();
                     Stage stage = (Stage) usernameField.getScene().getWindow();  // Lấy Stage hiện tại
                     stage.setTitle("Quản lý sản phẩm");
@@ -110,7 +111,8 @@ public class LoginController {
     @FXML
     private void openCreateAccount() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("register.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/Quanly/register.fxml"));
+
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setTitle("Create Account");

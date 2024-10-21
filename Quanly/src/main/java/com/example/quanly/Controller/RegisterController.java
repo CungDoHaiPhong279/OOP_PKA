@@ -1,5 +1,6 @@
-package com.example.quanly;
+package com.example.quanly.Controller;
 
+import com.example.quanly.Database.DBConnection;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;

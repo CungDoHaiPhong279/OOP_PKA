@@ -1,4 +1,4 @@
-package com.example.quanly;
+package com.example.quanly.Model;
 
 import javafx.beans.property.*;
 import java.util.ArrayList;

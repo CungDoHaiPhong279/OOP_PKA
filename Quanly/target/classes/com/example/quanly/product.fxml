@@ -6,7 +6,7 @@
 <!-- Liên kết với ProductController -->
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.quanly.ProductController"
+      fx:controller="com.example.quanly.Controller.ProductController"
       spacing="10">
 
     <!-- Thêm Padding đúng định dạng -->

@@ -1,5 +1,9 @@
-package com.example.quanly;
+package com.example.quanly.Controller;
 
+import com.example.quanly.Database.DBConnection;
+import com.example.quanly.Model.Order;
+import com.example.quanly.Model.OrderItem;
+import com.example.quanly.Model.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -575,7 +579,8 @@ public class OrderController {
     private void handleGoBack() {
         try {
             // Tải giao diện product.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("product.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/quanly/product.fxml"));
+
             Parent productView = loader.load();
 
             // Tạo một cảnh mới với giao diện sản phẩm

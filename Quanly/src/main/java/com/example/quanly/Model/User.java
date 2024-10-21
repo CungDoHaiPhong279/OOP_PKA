@@ -1,4 +1,4 @@
-package com.example.quanly;
+package com.example.quanly.Model;
 
 public class User {
     private int userId;

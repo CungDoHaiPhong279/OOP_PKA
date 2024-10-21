@@ -1,6 +1,6 @@
-package com.example.quanly;
+package com.example.quanly.Controller;
 
-import javafx.event.ActionEvent;
+import com.example.quanly.Model.Product;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

@@ -1,4 +1,6 @@
-package com.example.quanly;
+package com.example.quanly.Database;
+
+import com.example.quanly.Model.Product;
 
 import java.sql.*;
 import java.util.ArrayList;

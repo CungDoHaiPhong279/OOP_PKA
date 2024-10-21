@@ -1,4 +1,4 @@
-package com.example.quanly;
+package com.example.quanly.View;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +19,8 @@ public class Main extends Application {
 
         try {
             // Tải file FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/Quanly/login.fxml"));
+
             Parent root = loader.load();
 
             // Thiết lập Scene với file FXML
