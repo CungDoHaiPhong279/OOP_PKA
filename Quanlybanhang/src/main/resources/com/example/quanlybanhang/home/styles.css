@@ -1,0 +1,52 @@
+/* Đặt màu nền cho thanh điều hướng */
+.nav-bar {
+    -fx-background-color: #4CAF50;
+    -fx-padding: 10;
+}
+
+/* Thiết lập kiểu cho các nút với hình ảnh */
+.button-icon {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-graphic-text-gap: 5px;
+    -fx-font-weight: bold; /* Chữ đậm */
+}
+
+.button-icon .text {
+    -fx-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold; /* Chữ đậm */
+}
+
+/* Thiết lập kiểu cho nhãn thông tin */
+.label-info {
+    -fx-text-fill: #333;
+    -fx-background-color: #F5F5F5;
+    -fx-padding: 10;
+    -fx-border-color: #ddd;
+    -fx-font-weight: bold; /* Chữ đậm */
+}
+
+/* Thiết lập kiểu cho hộp biểu đồ */
+.chart-box {
+    -fx-border-color: #ddd;
+    -fx-padding: 10;
+}
+
+/* Thiết lập kiểu cho hộp bảng tóm tắt */
+.grid-box {
+    -fx-border-color: #ddd;
+    -fx-padding: 10;
+}
+
+/* Thiết lập kiểu cho nút ở phần dưới cùng */
+.bottom-buttons .button-icon {
+    -fx-font-size: 14px;
+    -fx-text-fill: #1E88E5;
+    -fx-font-weight: bold; /* Chữ đậm */
+}
+
+.bottom-buttons .button-icon .text {
+    -fx-fill: #1E88E5;
+    -fx-font-weight: bold; /* Chữ đậm */
+}

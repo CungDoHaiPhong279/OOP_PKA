@@ -1,15 +1,22 @@
-module com.example.quanly {
+module com.example.quanlybanhang {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.web;
     requires java.sql;
-    requires javafx.base;
+    requires org.controlsfx.controls;
+    requires com.dlsc.formsfx;
+    requires net.synedra.validatorfx;
+    requires org.kordamp.ikonli.javafx;
+    requires org.kordamp.bootstrapfx.core;
+    requires eu.hansolo.tilesfx;
+    requires com.almasb.fxgl.all;
 
-    // Export các package để sử dụng trong các file FXML
-    exports com.example.quanly.Controller;
-    exports com.example.quanly.Model;
-    exports com.example.quanly.View;
+    // Mở các package cần thiết cho JavaFX FXML
+    opens com.example.quanlybanhang.Controller to javafx.fxml;
 
-    // Mở các package cho JavaFX FXML sử dụng reflection để tải FXML
-    opens com.example.quanly.Controller to javafx.fxml;
-    opens com.example.quanly.View to javafx.fxml;
+    // Export các package chứa mã nguồn
+    exports com.example.quanlybanhang.Controller;
+    exports com.example.quanlybanhang.DataBase;
+    exports com.example.quanlybanhang.View;
+    opens com.example.quanlybanhang.View to javafx.fxml;
 }

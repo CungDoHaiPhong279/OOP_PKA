@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" alignment="CENTER" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml">
+    <Label text="Thêm Sản Phẩm" style="-fx-font-size: 16pt;" />
+
+    <!-- Các trường nhập liệu -->
+    <HBox spacing="10">
+        <Label text="Tên sản phẩm:" />
+        <TextField fx:id="nameField" promptText="Nhập tên sản phẩm" />
+    </HBox>
+    <HBox spacing="10">
+        <Label text="Giá bán lẻ:" />
+        <TextField fx:id="retailPriceField" promptText="Nhập giá bán lẻ" />
+    </HBox>
+    <HBox spacing="10">
+        <Label text="Giá vốn:" />
+        <TextField fx:id="costPriceField" promptText="Nhập giá vốn" />
+    </HBox>
+    <HBox spacing="10">
+        <Label text="Tồn kho:" />
+        <TextField fx:id="stockField" promptText="Nhập số lượng tồn kho" />
+    </HBox>
+
+    <!-- Nút hành động -->
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Lưu" onAction="#handleSaveProduct" />
+        <Button text="Hủy" onAction="#handleCancel" />
+    </HBox>
+</VBox>
