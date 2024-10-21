@@ -65,7 +65,7 @@ Dự án này là một hệ thống quản lý bán hàng, giúp tối ưu hóa
 
 
 ## DEMO SẢN PHẨM
-[DEMO](https://www.youtube.com/watch?v=PUpN5PhIqT8)
+[VIDEODEMO](https://www.youtube.com/watch?v=PUpN5PhIqT8)
 =======
 
 >>>>>>> Stashed changes
