@@ -11,12 +11,16 @@ Dự án này là một hệ thống quản lý bán hàng, giúp tối ưu hóa
 
 
 ## Chức Năng Chính
+- Đăng nhập
+- Đăng ký
 - Thêm, sửa, xoá sản phẩm
 - Thêm, sửa, xoá đơn hàng
 - Lấy thông tin sản phẩm
 - Lấy thông tin đơn hàng
 - Thêm sản phẩm vào đơn hàng(Order)
 - Xoá sản phẩm khỏi đơn hàng
+- Tìm sản phẩm theo tên
+- Tìm đơn hàng theo id
 
 ## UML Dự Án
 
@@ -42,7 +46,8 @@ Dự án này là một hệ thống quản lý bán hàng, giúp tối ưu hóa
 
 ## 1.2.3
 
-![UML](https://github.com/user-attachments/assets/8a55da5e-e857-4096-8955-e15b635c6c89)
+![UML](https://github.com/user-attachments/assets/c6fd587b-fd04-46bc-a4fc-96c4c4ab31b0)
+
 
 
 
@@ -54,6 +59,13 @@ Dự án này là một hệ thống quản lý bán hàng, giúp tối ưu hóa
 ## Giao diện đầu tiên của dự án
 ![firstScreen](https://github.com/user-attachments/assets/dc32f8a7-d815-42f6-a02b-2286f935396a)
 
+
+## Login with JDBC And TXT file(Lưu thông tin vào file TXT và CSDL)
+![JDBC And TXT LOGIN](https://github.com/user-attachments/assets/ee439e9f-e311-4773-8405-8edcb6ce97c3)
+
+
+## DEMO SẢN PHẨM
+[DEMO](https://www.youtube.com/watch?v=PUpN5PhIqT8)
 =======
 
 >>>>>>> Stashed changes
