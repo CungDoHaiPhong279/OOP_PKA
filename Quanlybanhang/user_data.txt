@@ -34,8 +34,8 @@ Email: abc@gmail.com
 Phone: 1234567890
 Password: 123456
 -------------------------
-Name: dffbdgbv
-Email: qs@gmail.com
-Phone: 1112211111
-Password: 111111
+Name: haiphong
+Email: haiphong@gmail.com
+Phone: 1234567890
+Password: 123456
 -------------------------
