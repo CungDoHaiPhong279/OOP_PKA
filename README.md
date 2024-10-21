@@ -60,8 +60,12 @@ Dự án này là một hệ thống quản lý bán hàng, giúp tối ưu hóa
 
 
 
-## Login with JDBC And TXT file(Lưu thông tin vào file TXT và CSDL)
-![JDBC And TXT LOGIN](https://github.com/user-attachments/assets/ee439e9f-e311-4773-8405-8edcb6ce97c3)
+## JDBC And TXT (Lưu thông tin vào file TXT và CSDL)
+![JDBC And TXT SAVE](https://github.com/user-attachments/assets/ee439e9f-e311-4773-8405-8edcb6ce97c3)
+
+
+## Login with JDBC
+![JDBC LOGIN](https://github.com/user-attachments/assets/8f33856d-bdde-4c6f-8668-17c3450e08ff)
 
 
 ## DEMO SẢN PHẨM
