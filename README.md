@@ -56,7 +56,8 @@ Dự án này là một hệ thống quản lý bán hàng, giúp tối ưu hóa
 
 
 ## Giao diện đầu tiên của dự án
-![firstScreen](https://github.com/user-attachments/assets/dc32f8a7-d815-42f6-a02b-2286f935396a)
+![firstScreen](https://github.com/user-attachments/assets/2e9b144b-e0a2-4f74-b13e-455611c49aa5)
+
 
 
 ## Login with JDBC And TXT file(Lưu thông tin vào file TXT và CSDL)
