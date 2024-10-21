@@ -60,8 +60,8 @@ Dự án này là một hệ thống quản lý bán hàng, giúp tối ưu hóa
 
 
 
-## JDBC And TXT (Lưu thông tin vào file TXT và CSDL)
-![JDBC And TXT SAVE](https://github.com/user-attachments/assets/ee439e9f-e311-4773-8405-8edcb6ce97c3)
+## CSDL And TXT (Lưu thông tin vào file TXT và CSDL)
+![CSDL And TXT SAVE](https://github.com/user-attachments/assets/ee439e9f-e311-4773-8405-8edcb6ce97c3)
 
 
 ## Login with JDBC
@@ -72,4 +72,9 @@ Dự án này là một hệ thống quản lý bán hàng, giúp tối ưu hóa
 [VIDEODEMO](https://www.youtube.com/watch?v=PUpN5PhIqT8)
 =======
 
+
+## Cách Cài Đặt
+1. Clone repository từ GitHub:
+   ```bash
+   git clone -b FinaltermCode https://github.com/Nguyen1976/JAVA_OOP_PKA_Nhom_10.git
 >>>>>>> Stashed changes
