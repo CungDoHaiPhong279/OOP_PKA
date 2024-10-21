@@ -7,7 +7,6 @@ Dự án này là một hệ thống quản lý bán hàng, giúp tối ưu hóa
 ## Thành Viên Nhóm
 
 - **Cung Đỗ Hải Phong**: Phát triển phần mềm toàn diện.
-- **Nguyễn Phan Quang Sơn**: Phát triển phần mềm toàn diện.
 
 
 ## Chức Năng Chính
